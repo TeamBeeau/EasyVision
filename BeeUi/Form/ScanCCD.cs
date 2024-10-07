@@ -91,8 +91,8 @@ namespace BeeUi
                     if (G.IsActive)
                     {
                         Main Main = new Main();
-                        G.EditTool.toolStripCamera.Image = Properties.Resources.CameraConnected;
-                        G.EditTool.toolStripCamera.Text = "Camera Connected";
+                        G.EditTool.lbCam.Image = Properties.Resources.CameraConnected;
+                        G.EditTool.lbCam.Text = "Camera Connected";
 
                         String sProgram = Properties.Settings.Default.programCurrent;
                         G.Load.lb.Text = "Loading program.. (" + sProgram + ")";
