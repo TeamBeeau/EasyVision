@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeeUi", "BeeUi\BeeUi.csproj
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Pi", "..\Pi\Pi.vcxproj", "{82DFE01A-1CF1-4819-AB91-30D6D3F0C9B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Active", "..\BeeVision\Active\Active.csproj", "{C41B70EB-DD90-44C0-BCEF-4D89ED266552}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Active", "..\Active\Active.csproj", "{C41B70EB-DD90-44C0-BCEF-4D89ED266552}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeeDevice", "..\BeeDevice\BeeDevice.csproj", "{F6E8B19F-7702-47D1-ACF3-3EE535ECCD1B}"
 EndProject

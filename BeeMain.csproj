@@ -136,7 +136,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bee.ico" />
-    <Content Include="kaplogo_2kE_icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
