@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F6E8B19F-7702-47D1-ACF3-3EE535ECCD1B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BeeDevice</RootNamespace>
+    <AssemblyName>BeeDevice</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HJ_Controls_Lib">
+      <HintPath>..\..\..\HEROJE_CRCS_V8.14_Sof\HEROJE_CRCS_V8.14\HJ_Controls_Lib.dll</HintPath>
+    </Reference>
+    <Reference Include="LibUsbDotNet">
+      <HintPath>..\..\..\HEROJE_CRCS_V8.14_Sof\HEROJE_CRCS_V8.14\LibUsbDotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class1.cs" />
+    <Compile Include="DeviceConnectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeviceConnectForm.Designer.cs">
+      <DependentUpon>DeviceConnectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HerojeClass\About.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HerojeClass\AdvancedPage_UpdateDB.cs" />
+    <Compile Include="HerojeClass\AdvancedSettingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HerojeClass\AlgorithmProtocolForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HerojeClass\BarcodeTypeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HerojeClass\CMD_Tool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HerojeClass\ComDebugTool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HerojeClass\CommunicateSettingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HerojeClass\ConfigBarcodeCheck.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HerojeClass\ControlAndXML.cs" />
+    <Compile Include="HerojeClass\CoordinateConv.cs" />
+    <Compile Include="HerojeClass\DataEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HerojeClass\DecodeSettingCodeXml.cs" />
+    <Compile Include="HerojeClass\decode_config_t.cs" />
+    <Compile Include="HerojeClass\DeviceCapacity.cs" />
+    <Compile Include="HerojeClass\DeviceFindAndCom.cs" />
+    <Compile Include="HerojeClass\DeviceSettingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HerojeClass\DevStateCB.cs" />
+    <Compile Include="HerojeClass\DevStateDef.cs" />
+    <Compile Include="HerojeClass\DirItemInfo.cs" />
+    <Compile Include="HerojeClass\DriverInstall.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HerojeClass\FormDeviceIP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HerojeClass\FormNet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HerojeClass\FormSaveTips.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HerojeClass\FtpFileInfo.cs" />
+    <Compile Include="HerojeClass\FtpHelper.cs" />
+    <Compile Include="HerojeClass\FtpUtil.cs" />
+    <Compile Include="HerojeClass\GetCfgCB.cs" />
+    <Compile Include="HerojeClass\GetSystemIcon.cs" />
+    <Compile Include="HerojeClass\HardwareEnum.cs" />
+    <Compile Include="HerojeClass\HJ_CRC32.cs" />
+    <Compile Include="HerojeClass\ImageProcessingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HerojeClass\ImageSaveSettingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HerojeClass\imgproc_config_t.cs" />
+    <Compile Include="HerojeClass\IniConfigFile.cs" />
+    <Compile Include="HerojeClass\IOInstructionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HerojeClass\KEY_Send.cs" />
+    <Compile Include="HerojeClass\LightingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HerojeClass\LogRecord.cs" />
+    <Compile Include="HerojeClass\ModuleSetting.cs" />
+    <Compile Include="HerojeClass\MultLanguageText.cs" />
+    <Compile Include="HerojeClass\MultRoiSettingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HerojeClass\OthersSettingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HerojeClass\ParaActDef.cs" />
+    <Compile Include="HerojeClass\ParameterTraining.cs" />
+    <Compile Include="HerojeClass\PnPEntityInfo.cs" />
+    <Compile Include="HerojeClass\ProcessBarForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HerojeClass\ProtocolExtraDataStu.cs" />
+    <Compile Include="HerojeClass\ProtocolHeaderStu.cs" />
+    <Compile Include="HerojeClass\ReadingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HerojeClass\ReadingPageActDef.cs" />
+    <Compile Include="HerojeClass\ReadingPageParaStu.cs" />
+    <Compile Include="HerojeClass\ReadingPage_UpdateDB.cs" />
+    <Compile Include="HerojeClass\roi_config_t.cs" />
+    <Compile Include="HerojeClass\SendCfgDataCB.cs" />
+    <Compile Include="HerojeClass\sensor_config_t.cs" />
+    <Compile Include="HerojeClass\SetCfgCB.cs" />
+    <Compile Include="HerojeClass\SettingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HerojeClass\SHFILEINFO.cs" />
+    <Compile Include="HerojeClass\StartForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HerojeClass\TemplateActionDef.cs" />
+    <Compile Include="HerojeClass\TemplateSettingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HerojeClass\TemplateStruct.cs" />
+    <Compile Include="HerojeClass\template_config_t.cs" />
+    <Compile Include="HerojeClass\ToolCfg.cs" />
+    <Compile Include="HerojeClass\UiParaInfoStu.cs" />
+    <Compile Include="HerojeClass\UpdateParaAndDisplayCB.cs" />
+    <Compile Include="HerojeClass\USB.cs" />
+    <Compile Include="HerojeClass\Win32.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SettingDevice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SettingDevice.Designer.cs">
+      <DependentUpon>SettingDevice.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DeviceConnectForm.resx">
+      <DependentUpon>DeviceConnectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HerojeClass\Heroje_Debug_Tool.Properties.Resources.resx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettingDevice.resx">
+      <DependentUpon>SettingDevice.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BeeIV2\BeeCore\BeeCore.csproj">
+      <Project>{ac6e4007-f2a0-49f3-b777-dde4c58c5adc}</Project>
+      <Name>BeeCore</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
