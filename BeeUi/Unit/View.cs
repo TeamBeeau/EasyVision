@@ -2245,8 +2245,8 @@ namespace BeeUi
                     {
                         if (!BeeCore.Common.ConnectCCD(G.ScanCCD.indexCCD, G.Config.Resolution))
                         {
-                            G.EditTool.lbCam.Image = Properties.Resources.CameraNotConnect;
-                            G.EditTool.lbCam.Text = "Camera Not Connect";
+                            G.EditTool.toolStripCamera.Image = Properties.Resources.CameraNotConnect;
+                            G.EditTool.toolStripCamera.Text = "Camera Not Connect";
 
                             btnCap.Enabled = false;
                             btnRecord.Enabled = false;
@@ -2265,8 +2265,8 @@ namespace BeeUi
                                 btnCalib.Enabled = true;
                                 btnTest.Enabled = true;
                             }
-                            G.EditTool.lbCam.Image = Properties.Resources.CameraConnected;
-                            G.EditTool.lbCam.Text = G.Config.IDCamera.Split('$')[0] + " Connected";
+                            G.EditTool.toolStripCamera.Image = Properties.Resources.CameraConnected;
+                            G.EditTool.toolStripCamera.Text = G.Config.IDCamera.Split('$')[0] + " Connected";
                         }
                     }
                     else
@@ -2276,8 +2276,8 @@ namespace BeeUi
                         btnRecord.Enabled = false;
                         btnCalib.Enabled = false;
                         btnTest.Enabled = false;
-                        G.EditTool.lbCam.Image = Properties.Resources.CameraNotConnect;
-                        G.EditTool.lbCam.Text = "Camera Not Connect";
+                        G.EditTool.toolStripCamera.Image = Properties.Resources.CameraNotConnect;
+                        G.EditTool.toolStripCamera.Text = "Camera Not Connect";
 
                     }
                 }
@@ -2291,8 +2291,8 @@ namespace BeeUi
                         btnCalib.Enabled = true;
                         btnTest.Enabled = true;
                     }
-                    G.EditTool.lbCam.Image = Properties.Resources.CameraConnected;
-                    G.EditTool.lbCam.Text =  G.Config.IDCamera.Split('$')[0] + " Connected";
+                    G.EditTool.toolStripCamera.Image = Properties.Resources.CameraConnected;
+                    G.EditTool.toolStripCamera.Text =  G.Config.IDCamera.Split('$')[0] + " Connected";
                 }
             }
                

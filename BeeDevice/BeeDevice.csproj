@@ -32,10 +32,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="HJ_Controls_Lib">
-      <HintPath>..\..\..\HEROJE_CRCS_V8.14_Sof\HEROJE_CRCS_V8.14\HJ_Controls_Lib.dll</HintPath>
+      <HintPath>..\Lib\HJ_Controls_Lib.dll</HintPath>
     </Reference>
     <Reference Include="LibUsbDotNet">
-      <HintPath>..\..\..\HEROJE_CRCS_V8.14_Sof\HEROJE_CRCS_V8.14\LibUsbDotNet.dll</HintPath>
+      <HintPath>..\Lib\LibUsbDotNet.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -210,7 +210,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BeeIV2\BeeCore\BeeCore.csproj">
+    <ProjectReference Include="..\BeeCore\BeeCore.csproj">
       <Project>{ac6e4007-f2a0-49f3-b777-dde4c58c5adc}</Project>
       <Name>BeeCore</Name>
     </ProjectReference>

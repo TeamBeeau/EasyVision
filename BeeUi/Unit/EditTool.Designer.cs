@@ -30,8 +30,8 @@
         {
             this.StatusBar = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripCamera = new System.Windows.Forms.ToolStripStatusLabel();
             this.lbFrameRate = new System.Windows.Forms.ToolStripStatusLabel();
-            this.lbCam = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripPort = new System.Windows.Forms.ToolStripStatusLabel();
             this.txtRecept = new System.Windows.Forms.ToolStripStatusLabel();
             this.lbLicence = new System.Windows.Forms.Label();
@@ -43,7 +43,6 @@
             this.lbTool = new System.Windows.Forms.Label();
             this.iconTool = new System.Windows.Forms.PictureBox();
             this.pView = new System.Windows.Forms.Panel();
-            this.header1 = new BeeUi.Common.Header();
             this.StatusBar.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.pEdit.SuspendLayout();
@@ -68,7 +67,7 @@
             this.statusStrip1.BackColor = System.Drawing.Color.Transparent;
             this.statusStrip1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lbCam,
+            this.toolStripCamera,
             this.lbFrameRate,
             this.toolStripPort,
             this.txtRecept});
@@ -79,18 +78,18 @@
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
+            // toolStripCamera
+            // 
+            this.toolStripCamera.Image = global::BeeUi.Properties.Resources.CameraNotConnect;
+            this.toolStripCamera.Name = "toolStripCamera";
+            this.toolStripCamera.Size = new System.Drawing.Size(48, 20);
+            this.toolStripCamera.Text = "0 fps";
+            // 
             // lbFrameRate
             // 
             this.lbFrameRate.Name = "lbFrameRate";
             this.lbFrameRate.Size = new System.Drawing.Size(34, 20);
             this.lbFrameRate.Text = "0 Fps";
-            // 
-            // lbCam
-            // 
-            this.lbCam.Image = global::BeeUi.Properties.Resources.CameraNotConnect;
-            this.lbCam.Name = "lbCam";
-            this.lbCam.Size = new System.Drawing.Size(48, 20);
-            this.lbCam.Text = "0 fps";
             // 
             // toolStripPort
             // 
@@ -123,9 +122,9 @@
             this.pEdit.Controls.Add(this.pEditTool);
             this.pEdit.Controls.Add(this.pName);
             this.pEdit.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pEdit.Location = new System.Drawing.Point(629, 64);
+            this.pEdit.Location = new System.Drawing.Point(629, 0);
             this.pEdit.Name = "pEdit";
-            this.pEdit.Size = new System.Drawing.Size(395, 617);
+            this.pEdit.Size = new System.Drawing.Size(395, 681);
             this.pEdit.TabIndex = 14;
             // 
             // pEditTool
@@ -133,7 +132,7 @@
             this.pEditTool.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pEditTool.Location = new System.Drawing.Point(0, 95);
             this.pEditTool.Name = "pEditTool";
-            this.pEditTool.Size = new System.Drawing.Size(395, 522);
+            this.pEditTool.Size = new System.Drawing.Size(395, 586);
             this.pEditTool.TabIndex = 1;
             // 
             // pName
@@ -193,21 +192,10 @@
             // 
             this.pView.BackColor = System.Drawing.Color.White;
             this.pView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pView.Location = new System.Drawing.Point(0, 64);
+            this.pView.Location = new System.Drawing.Point(0, 0);
             this.pView.Name = "pView";
-            this.pView.Size = new System.Drawing.Size(629, 617);
+            this.pView.Size = new System.Drawing.Size(629, 681);
             this.pView.TabIndex = 16;
-            // 
-            // header1
-            // 
-            this.header1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(208)))), ((int)(((byte)(214)))));
-            this.header1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.header1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.header1.Location = new System.Drawing.Point(0, 0);
-            this.header1.Name = "header1";
-            this.header1.Size = new System.Drawing.Size(1024, 64);
-            this.header1.TabIndex = 12;
-            this.header1.Load += new System.EventHandler(this.header1_Load_1);
             // 
             // EditTool
             // 
@@ -215,7 +203,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.pView);
             this.Controls.Add(this.pEdit);
-            this.Controls.Add(this.header1);
             this.Controls.Add(this.StatusBar);
             this.Name = "EditTool";
             this.Size = new System.Drawing.Size(1024, 706);
@@ -245,7 +232,7 @@
         public Common.Header header1;
         public System.Windows.Forms.Label lbLicence;
         private System.Windows.Forms.StatusStrip statusStrip1;
-        public System.Windows.Forms.ToolStripStatusLabel lbCam;
+        public System.Windows.Forms.ToolStripStatusLabel toolStripCamera;
         public System.Windows.Forms.ToolStripStatusLabel toolStripPort;
         public System.Windows.Forms.ToolStripStatusLabel txtRecept;
         public System.Windows.Forms.Panel pName;

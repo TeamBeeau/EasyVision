@@ -15,9 +15,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Pi", "Pi\Pi.vcxproj", "{82D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Active", "Active\Active.csproj", "{C41B70EB-DD90-44C0-BCEF-4D89ED266552}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeeDevice", "..\BeeDevice\BeeDevice.csproj", "{F6E8B19F-7702-47D1-ACF3-3EE535ECCD1B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeeDevice", "BeeDevice\BeeDevice.csproj", "{F6E8B19F-7702-47D1-ACF3-3EE535ECCD1B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crypto", "..\Crypto\Crypto.csproj", "{C8F05CE8-645C-42BD-AD8D-4386CA8F19CB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crypto", "Crypto\Crypto.csproj", "{C8F05CE8-645C-42BD-AD8D-4386CA8F19CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
