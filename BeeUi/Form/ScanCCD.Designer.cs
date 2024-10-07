@@ -40,9 +40,6 @@ namespace BeeUi
             this.work = new System.ComponentModel.BackgroundWorker();
             this.cbReSolution = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnDevice = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -66,7 +63,7 @@ namespace BeeUi
             this.btnConnect.Name = "btnConnect";
             this.btnConnect.Size = new System.Drawing.Size(307, 46);
             this.btnConnect.TabIndex = 33;
-            this.btnConnect.Text = "Connect USB";
+            this.btnConnect.Text = "Connect";
             this.btnConnect.UseVisualStyleBackColor = false;
             this.btnConnect.Click += new System.EventHandler(this.btnAreaBlack_Click);
             // 
@@ -89,7 +86,7 @@ namespace BeeUi
             this.btnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(205)))), ((int)(((byte)(35)))));
-            this.btnClose.Location = new System.Drawing.Point(344, 2);
+            this.btnClose.Location = new System.Drawing.Point(352, 2);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(20, 20);
             this.btnClose.TabIndex = 38;
@@ -127,7 +124,6 @@ namespace BeeUi
             "800x600 (0,5 MP)",
             "1024x768 (0.8 MP)",
             "1280x720 (1.3 MP)",
-            "1280x1080 (1.4 MP)",
             "1600x1200 (1.9 MP)",
             "1920x1080 (2.1 MP)",
             "2048x1536 (3.1 MP)",
@@ -149,41 +145,12 @@ namespace BeeUi
             this.label1.TabIndex = 41;
             this.label1.Text = "Resolution";
             // 
-            // btnDevice
-            // 
-            this.btnDevice.BackColor = System.Drawing.Color.Brown;
-            this.btnDevice.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnDevice.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnDevice.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDevice.ForeColor = System.Drawing.Color.White;
-            this.btnDevice.Location = new System.Drawing.Point(379, 171);
-            this.btnDevice.Name = "btnDevice";
-            this.btnDevice.Size = new System.Drawing.Size(142, 46);
-            this.btnDevice.TabIndex = 43;
-            this.btnDevice.Text = "Connect IV";
-            this.btnDevice.UseVisualStyleBackColor = false;
-            this.btnDevice.Click += new System.EventHandler(this.btnDevice_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImage = global::BeeUi.Properties.Resources.output_onlinepngtools;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Location = new System.Drawing.Point(379, 59);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(142, 106);
-            this.pictureBox1.TabIndex = 44;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            this.pictureBox1.DoubleClick += new System.EventHandler(this.pictureBox1_DoubleClick);
-            // 
             // ScanCCD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(365, 236);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.btnDevice);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(205)))), ((int)(((byte)(35)))));
+            this.ClientSize = new System.Drawing.Size(373, 236);
             this.Controls.Add(this.cbReSolution);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbCCD);
@@ -196,7 +163,6 @@ namespace BeeUi
             this.Name = "ScanCCD";
             this.Text = "FormActive";
             this.Load += new System.EventHandler(this.ScanCCD_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -213,7 +179,5 @@ namespace BeeUi
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.ComboBox cbCCD;
         public System.Windows.Forms.ComboBox cbReSolution;
-        private System.Windows.Forms.Button btnDevice;
-        private System.Windows.Forms.PictureBox pictureBox1;
     }
     }

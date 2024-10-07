@@ -121,7 +121,7 @@ namespace BeeUi
             lbActive.Text = sActive;
         }
         public String sActive = "";
-    
+
         private void WLoad_DoWork(object sender, DoWorkEventArgs e)
         {
             try
@@ -139,7 +139,7 @@ namespace BeeUi
                 }
 
 
-           
+
                 FormActive.CheckActive(addMac);
 
                 if (G.Config.IDCamera != null)

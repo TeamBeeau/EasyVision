@@ -47,7 +47,7 @@ namespace BeeUi
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label1.Location = new System.Drawing.Point(170, 68);
+            this.label1.Location = new System.Drawing.Point(170, 65);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(241, 46);
             this.label1.TabIndex = 1;
@@ -58,18 +58,18 @@ namespace BeeUi
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(174, 46);
+            this.label2.Location = new System.Drawing.Point(174, 43);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(132, 20);
+            this.label2.Size = new System.Drawing.Size(182, 20);
             this.label2.TabIndex = 2;
-            this.label2.Text = "AHSO CO.,LTD";
+            this.label2.Text = "Bee Eyes Automation";
             // 
             // lbVersion
             // 
             this.lbVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lbVersion.AutoSize = true;
             this.lbVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbVersion.ForeColor = System.Drawing.Color.Black;
+            this.lbVersion.ForeColor = System.Drawing.Color.White;
             this.lbVersion.Location = new System.Drawing.Point(451, 159);
             this.lbVersion.Name = "lbVersion";
             this.lbVersion.Size = new System.Drawing.Size(83, 15);
@@ -82,7 +82,7 @@ namespace BeeUi
             this.lb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb.ForeColor = System.Drawing.Color.Black;
-            this.lb.Location = new System.Drawing.Point(146, 142);
+            this.lb.Location = new System.Drawing.Point(146, 145);
             this.lb.Name = "lb";
             this.lb.Size = new System.Drawing.Size(295, 24);
             this.lb.TabIndex = 5;
@@ -107,17 +107,16 @@ namespace BeeUi
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox2.Image = global::BeeUi.Properties.Resources.PrepareDlgProgress;
-            this.pictureBox2.Location = new System.Drawing.Point(425, 179);
+            this.pictureBox2.Location = new System.Drawing.Point(251, 114);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(83, 28);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox2.TabIndex = 4;
             this.pictureBox2.TabStop = false;
-            this.pictureBox2.Visible = false;
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackgroundImage = global::BeeUi.Properties.Resources.LogoAHSo;
+            this.pictureBox1.BackgroundImage = global::BeeUi.Properties.Resources.BeauNho;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox1.Location = new System.Drawing.Point(15, 12);
             this.pictureBox1.Name = "pictureBox1";
@@ -130,7 +129,7 @@ namespace BeeUi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(205)))), ((int)(((byte)(35)))));
             this.ClientSize = new System.Drawing.Size(538, 178);
             this.Controls.Add(this.lbVersion);
             this.Controls.Add(this.lbActive);

@@ -1,5 +1,4 @@
 ﻿using BeeUi.Commons;
-using Heroje_Debug_Tool.BaseClass;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -78,25 +77,10 @@ namespace BeeUi
         Crypto Crypto = new Crypto();
         private void work_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            
-                if (G.Config.TypeCamera == BeeCore.TypeCamera.TinyIV)
-            {
-                if (BeeUi.G.IsCCD)
-                {
-                    BeeCore.Common.DestroyAll();
-                }
-               G.DeviceConnectForm = new BeeDevice.DeviceConnectForm();
-
-                //deviceConnectForm.Show();
-                G.DeviceConnectForm.Page_Init();
-                G.Config.TypeCamera = BeeCore.TypeCamera.TinyIV;
-                G.IsCCD = false;
-                if (ToolCfg.CurrentDevice != null)
-                    G.IsCCD = ToolCfg.CurrentDevice.IsConnect;
-                   
-            }    
-               //G.MainForm.LoadCamera();
-          //  G.MainForm.Show();
+            String[] sp = G.Config.Resolution.Split(' ');
+            String[] sp2 = sp[0].Split('x');
+           
+            //G.MainForm.Show();
             btnConnect.Enabled = true;
             if (BeeUi.G.IsCCD)
             {
@@ -107,16 +91,9 @@ namespace BeeUi
                     if (G.IsActive)
                     {
                         Main Main = new Main();
-                        G.EditTool.lbCam.Image = Properties.Resources.CameraConnected;
-                        if (G.Config.TypeCamera == BeeCore.TypeCamera.USB)
-                        {
-                           
-                            G.EditTool.lbCam.Text = G.Config.IDCamera.Split('$')[0] + " Connected";
-                        }
-                        else
-                        {
-                            G.EditTool.lbCam.Text ="TinyIV" + " Connected";
-                        }    
+                        G.EditTool.toolStripCamera.Image = Properties.Resources.CameraConnected;
+                        G.EditTool.toolStripCamera.Text = "Camera Connected";
+
                         String sProgram = Properties.Settings.Default.programCurrent;
                         G.Load.lb.Text = "Loading program.. (" + sProgram + ")";
 
@@ -144,17 +121,11 @@ namespace BeeUi
                 {
                    
                         BeeCore.Common.ReadCCD(false, G.Config.TypeCamera);
-
                         BeeCore.Common.matRaw = BeeCore.Common.GetImageRaw(G.Config.TypeCamera);
-                    if (BeeCore.Common.matRaw!=null)
-                        if (!BeeCore.Common.matRaw.Empty())
-                            G.EditTool.View.imgView.ImageIpl = BeeCore.Common.matRaw;
+                        G.EditTool.View.imgView.ImageIpl = BeeCore.Common.matRaw;
                    
                 }
-                if (BeeCore.Common.matRaw!=null)
-                    if (!BeeCore.Common.matRaw.Empty())
-                G.EditTool.View.imgView.Location = new Point(G.EditTool.View.pView.Width / 2 - BeeCore.Common.matRaw.Width / 2, G.EditTool.View.pView.Height / 2 - BeeCore.Common.matRaw.Height / 2);
-
+              
                 if (File.Exists("Default.config"))
                     File.Delete("Default.config");
                 Access.SaveConfig("Default.config", G.Config);
@@ -196,30 +167,6 @@ namespace BeeUi
             G.Config.Resolution = cbReSolution.Text.Trim();
         }
   
-        private void btnDevice_Click(object sender, EventArgs e)
-        {
-          
-            
-            G.Config.TypeCamera = BeeCore.TypeCamera.TinyIV;
-         
-            btnDevice.Enabled = false;
-            ConnectCCD();
-
-        }
-
-        private void pictureBox1_DoubleClick(object sender, EventArgs e)
-        {
-
-            BeeDevice.DeviceConnectForm deviceConnectForm = new BeeDevice.DeviceConnectForm();
-           
-            //deviceConnectForm.Show();
-            deviceConnectForm.Page_Init();
-            G.Config.TypeCamera = BeeCore.TypeCamera.TinyIV;
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }

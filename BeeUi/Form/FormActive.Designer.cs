@@ -127,7 +127,7 @@ namespace BeeUi
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::BeeUi.Properties.Resources.LogoAHSo1;
+            this.pictureBox1.Image = global::BeeUi.Properties.Resources.BeauNho;
             this.pictureBox1.Location = new System.Drawing.Point(491, 167);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(25, 23);
@@ -139,7 +139,7 @@ namespace BeeUi
             // 
             this.lbVersion.AutoSize = true;
             this.lbVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbVersion.ForeColor = System.Drawing.Color.Black;
+            this.lbVersion.ForeColor = System.Drawing.Color.White;
             this.lbVersion.Location = new System.Drawing.Point(456, 193);
             this.lbVersion.Name = "lbVersion";
             this.lbVersion.Size = new System.Drawing.Size(75, 13);
@@ -174,7 +174,7 @@ namespace BeeUi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(205)))), ((int)(((byte)(35)))));
             this.ClientSize = new System.Drawing.Size(538, 212);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.lbVersion);
