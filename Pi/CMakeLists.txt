@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 2.7)
+project(Pi)
+set(LIBRARIES_FROM_REFERENCES "")
+add_executable(Pi main.cpp)
+target_include_directories(Pi PRIVATE /usr/local/include/opencv4)
+find_package(OpenCV REQUIRED)
+target_link_libraries(Pi ${OpenCV_LIBS} "${LIBRARIES_FROM_REFERENCES}")
