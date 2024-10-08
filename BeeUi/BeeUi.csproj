@@ -512,7 +512,7 @@
     <None Include="Resources\Rectangle.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\BeeDevice\BeeDevice.csproj">
+    <ProjectReference Include="..\BeeDevice\BeeDevice.csproj">
       <Project>{f6e8b19f-7702-47d1-acf3-3ee535eccd1b}</Project>
       <Name>BeeDevice</Name>
     </ProjectReference>

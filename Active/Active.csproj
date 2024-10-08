@@ -83,7 +83,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\BeeIV2\BeeUi\BeeUi.csproj">
+    <ProjectReference Include="..\BeeUi\BeeUi.csproj">
       <Project>{1adaceb7-cb42-4600-adab-d5223651fe9a}</Project>
       <Name>BeeUi</Name>
     </ProjectReference>

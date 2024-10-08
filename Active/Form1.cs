@@ -21,6 +21,7 @@ namespace Active
             InitializeComponent();
             txtMac.Text = Decompile.GetMacAddress();
         }
+      
         String addMac = "";
         // KeyAcitve KeyAcitve;
         Crypto Crypto = new Crypto();
