@@ -3,6 +3,13 @@
 using  namespace CvPlus;
 namespace CvPlus
 {
+	
+	CDeviceInfo nameBasler;
+	Camera_t baslerGigE;
+	CGrabResultPtr ptrGrabResult;
+	CPylonImage image;/////anh output
+	CImageFormatConverter fc;///anh convert
+	
 	cv::Mat matCrop;
 	cv::VideoCapture camUSB;
 	 cv::Mat matTemp, matRaw, matResult, matRsTemp;

@@ -1,4 +1,4 @@
-#include "CCD.h"
+﻿#include "CCD.h"
 using namespace CvPlus; 
 using namespace System::Runtime::InteropServices;
 uchar* MatToBytes(cv::Mat image)
@@ -186,28 +186,180 @@ std::string DeviceEnumerator::ConvertWCSToMBS(const wchar_t* pstr, long wslen)
 	return dblstr;
 }
 #pragma endregion
-
-System::String^ CCD::ScanCCD()
+Pylon::String_t a="";
+static const size_t c_maxCamerasToUse = 2;
+DeviceInfoList_t devices;
+System::String^ ScanBasler()
 {
-	System::String^ ListCCD="";
-	DeviceEnumerator de;
+	PylonInitialize();
+	// Get the transport layer factory.
+	CTlFactory& tlFactory = CTlFactory::GetInstance();
 
+	// Get all attached devices and exit application if no device is found.
+
+	if (tlFactory.EnumerateDevices(devices) == 0)
+	{
+		return "";
+	}
+	CInstantCamera camera(CTlFactory::GetInstance().CreateFirstDevice());
+	// Create an array of instant cameras for the found devices and avoid exceeding a maximum number of devices.
+	//CInstantCameraArray cameras(min(devices.size(), c_maxCamerasToUse));
+	std::string list1 = "";
+	// Create and attach all Pylon Devices.
+	for (size_t i = 0; i < devices.size(); ++i)
+	{
+		//cameras[i].Attach(tlFactory.CreateDevice(devices[i]));
+		list1.append(devices[i].GetUserDefinedName()).append("$").append(devices[i].GetModelName()).append("$").append(devices[i].GetSerialNumber()).append("\n");
+		// Print the model name of the camera.
+		//cout << "Using device " << cameras[i].GetDeviceInfo().GetModelName() << endl;
+	}
+
+	return gcnew  System::String(list1.c_str());;
+	
+}
+System::String^ ScanUsb()
+{
+
+	System::String^ ListCCD = "";
+	DeviceEnumerator de;
 	// Audio Devices
 	std::map<int, Device> devices;
-
-
 	std::string list1 = "";
 	devices = de.getVideoDevicesMap();
 	for (auto const& device : devices) {
 		list1.append(device.second.deviceName).append("$").append(device.second.devicePath).append("\n");
 		//.append(std::to_string(device.first)).append("$").
 	}
-
 	//ListCCD=System::String(list1.c_str()); //Marshal::PtrToStringAnsi(&list1, NULL);
 	//Console::WriteLine(ListCCD);
 	return gcnew  System::String(list1.c_str());;
 }
-bool CCD::Connect(int index)
+System::String^ CCD::ScanCCD()
+{
+	System::String^ nameCCD="";
+	switch (typeCCD)
+	{
+	case 1:
+		nameCCD= ScanBasler();
+		break;
+	default: 
+		nameCCD =ScanUsb();
+		break;
+	}
+	return nameCCD;
+}
+bool ConnectBasler(int rowCCD, int colCCD, int index)
+{
+	if (index == -1)return false;
+	try
+	{
+		
+		//PylonInitialize();
+	
+		CTlFactory& tlFactory = CTlFactory::GetInstance();
+		if (devices[index].GetFullName() != "")// đã nhận dc tên ccd
+		{
+			try
+			{
+				baslerGigE.Attach(tlFactory.CreateDevice(devices[index]));//kt quyền điều khiển
+				baslerGigE.Open();
+				GenApi::CBooleanPtr ptrAutoPacketSize = baslerGigE.GetStreamGrabberNodeMap().GetNode("AutoPacketSize");
+				if (GenApi::IsWritable(ptrAutoPacketSize))
+				{
+					ptrAutoPacketSize->SetValue(true);
+				}
+				baslerGigE.Width.SetValue(colCCD);
+				baslerGigE.Height.SetValue(rowCCD);
+				int with = (int)baslerGigE.Width.GetMax();
+				int height = (int)baslerGigE.Height.GetMax();
+				baslerGigE.CenterX =true;
+				baslerGigE.CenterX =true;
+				baslerGigE.ExposureTimeAbs.SetValue(10);
+				//_minOffsetX = (int)camera.OffsetX.GetMin();
+				//baslerGigE.OffsetX.SetValue(_xCenter);
+				//baslerGigE.OffsetY.SetValue(_yCenter);
+				//baslerGigE.ExposureTime.SetValue(_exporsure);
+				//camera.Gamma.SetValue(3.05);
+				//camera.BlackLevel.SetValue(0);
+				//Lamp(true);
+				//IO(true);
+				//minExplosure = (int)camera.ExposureTimeRaw.GetMin();
+				//maxGain = (double)camera.Gamma.GetMax()*100.0;
+				//maxSetX = (int)camera.OffsetX.GetMax();
+				//maxSetY = (int)camera.OffsetY.GetMax();
+				//WriteParaCCD();//set thong so ccd
+
+				//	_StepExposure = (int)camera.ExposureTime.GetInc();
+
+				//_maxblack = (int)camera.BlackLevel.GetMax();
+				//_minblack = (int)camera.BlackLevel.GetMin();
+
+				//_maxGain = (double)camera.Gain.GetMax();
+				//_minGain = (double)camera.Gain.GetMin();
+
+				//_maxExposure = (double)camera.ExposureTime.GetMax();
+				//_minExposure = (double)camera.ExposureTime.GetMin();
+
+				
+				//_minOffsetY = (int)camera.OffsetY.GetMin();
+				//_maxOffsetY = (int)camera.OffsetY.GetMax();
+				//_maxWidth = (int)camera.Width.GetMax();
+				//_minWidth = (int)camera.Width.GetMin();
+
+				//_maxHeight = (int)camera.Height.GetMax();
+				//_minHeight = (int)camera.Height.GetMin();
+				////_StepGamma =(int) camera.Gamma.GetInc();
+				//_StepWidth = (int)camera.Width.GetInc();
+				//_StepHeight = (int)camera.Height.GetInc();
+
+				//_StepOffsetX = (int)camera.OffsetX.GetInc();
+				//_StepOffsetY = (int)camera.OffsetY.GetInc();
+				baslerGigE.StartGrabbing();//Tao luong Doc anh
+
+				fc.OutputPixelFormat = PixelType_Mono8;
+
+				baslerGigE.RetrieveResult(-1, ptrGrabResult, TimeoutHandling_ThrowException);//Lay Data Camera SAU KHOẢNG THỜI GIAN SẼ THOÁT RA ,(NẾU GIÁ TRỊ BẰNG -1 KHÔNG THOÁT RA)
+				if (ptrGrabResult->GrabSucceeded())
+				{
+					fc.Convert(image, ptrGrabResult);///Chuyen gia tri ma camera qua anh thu viện Pylon Balser
+					matRaw = cv::Mat(ptrGrabResult->GetHeight(), ptrGrabResult->GetWidth(), CV_8UC1, (uint8_t*)image.GetBuffer(), Mat::AUTO_STEP);///convert anh thu vien pylon thanh Mat			
+					
+					
+
+				}
+				ptrGrabResult.Release();//Xoa data
+				return true;
+				//	
+
+
+			}
+			catch (GenICam::GenericException& e)
+			{
+
+
+				baslerGigE.StopGrabbing();
+				baslerGigE.Close();
+				baslerGigE.DetachDevice();
+
+				//PylonTerminate();
+			}
+		}
+	}
+	catch (GenICam::GenericException& e)
+	{
+
+		baslerGigE.StopGrabbing();
+		baslerGigE.Close();
+		baslerGigE.DetachDevice();
+		PylonTerminate();
+	}
+	return false;
+}
+bool	CCD::SetPara()
+{
+	return false;
+}
+bool ConnectUsb(int rowCCD, int colCCD, int index)
 {
 	camUSB.open(index);
 	camUSB.set(CAP_PROP_FRAME_WIDTH, colCCD);
@@ -216,32 +368,61 @@ bool CCD::Connect(int index)
 	camUSB.set(CAP_PROP_FOCUS, 12);
 	camUSB.set(CAP_PROP_AUTO_EXPOSURE, 0);
 	camUSB.set(CAP_PROP_EXPOSURE, -11);
-		numERR = 0;
-		IsErrCCD = false;
 	
+
 	if (camUSB.isOpened())
 	{
-		camUSB .read(matRaw);
 		camUSB.read(matRaw);
 		camUSB.read(matRaw);
 		camUSB.read(matRaw);
-		
+		camUSB.read(matRaw);
+
 		return true;
 	}
 	return false;
 }
+bool CCD::Connect( int rowCCD, int colCCD, int index)
+{
+	numERR = 0;
+	IsErrCCD = false;
+	switch (typeCCD)
+	{
+	case 1:return ConnectBasler(rowCCD, colCCD, index);
+		break;
+	default:return ConnectUsb(rowCCD, colCCD, index);
+		break;
+	}
+	
+}
 void CCD::ReadCCD()
 {
 	double d1 = clock();
-	Mat raw = Mat();
-	
-	bool IsRead = camUSB.read(raw);
-	//camUSB >> raw;
-matRaw = raw;
-if (!IsRead)
-IsErrCCD = true;
+	switch (typeCCD)
+	{
+	case 1: 
+		baslerGigE.RetrieveResult(-1, ptrGrabResult, TimeoutHandling_ThrowException);//Lay Data Camera SAU KHOẢNG THỜI GIAN SẼ THOÁT RA ,(NẾU GIÁ TRỊ BẰNG -1 KHÔNG THOÁT RA)
+		if (ptrGrabResult->GrabSucceeded())
+		{
+			fc.Convert(image, ptrGrabResult);///Chuyen gia tri ma camera qua anh thu viện Pylon Balser
+			matRaw = cv::Mat(ptrGrabResult->GetHeight(), ptrGrabResult->GetWidth(), CV_8UC1, (uint8_t*)image.GetBuffer(), Mat::AUTO_STEP);///convert anh thu vien pylon thanh Mat			
+		}
+		break;
+	default:
+		Mat raw = Mat();
 
-matRaw = raw;
+		bool IsRead = camUSB.read(raw);
+		//camUSB >> raw;
+		matRaw = raw;
+		if (!IsRead)
+			IsErrCCD = true;
+
+		matRaw = raw;
+		break;
+
+	}
+	
+	
+	
 
 
 	//camUSB.read(matRaw);
@@ -283,27 +464,27 @@ Mat equalizeBGRA(const Mat& img)
 
 	return res;
 }
-void CCD::ReadRaw(bool IsHist)
-{
-	double d1 = clock();
-	Mat raw = Mat();
-	camUSB.read(raw);
-
-	camUSB >> raw;
-	if (IsHist)
-		matRaw = equalizeBGRA(raw);
-	else
-		matRaw = raw;
-	if (matRaw.empty() || matRaw.cols == 0 || matRaw.rows == 0)
-		numERR++;
-
-	if (numERR > 5)
-	{
-		numERR = 0;
-		IsErrCCD = true;
-	}
-	cycle = int(clock() - d1);
-}
+//void CCD::ReadRaw(bool IsHist)
+//{
+//	double d1 = clock();
+//	Mat raw = Mat();
+//	camUSB.read(raw);
+//
+//	camUSB >> raw;
+//	if (IsHist)
+//		matRaw = equalizeBGRA(raw);
+//	else
+//		matRaw = raw;
+//	if (matRaw.empty() || matRaw.cols == 0 || matRaw.rows == 0)
+//		numERR++;
+//
+//	if (numERR > 5)
+//	{
+//		numERR = 0;
+//		IsErrCCD = true;
+//	}
+//	cycle = int(clock() - d1);
+//}
 
 
 void CCD::CalHist()
@@ -373,8 +554,21 @@ void CCD::CalHist()
 }
 void CCD::DestroyAll()
 {
-	camUSB.release();
-	destroyAllWindows();
+	switch (typeCCD)
+	{
+	case 0 :
+		camUSB.release();
+		destroyAllWindows();
+		break;
+	case 1:
+		baslerGigE.StopGrabbing();
+		baslerGigE.Close();
+		baslerGigE.DetachDevice();
+		break;
+	default:
+		break;
+	}
+	
 }
 bool IsShow = false;
 void CCD::ShowSetting()

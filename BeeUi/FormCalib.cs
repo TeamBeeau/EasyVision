@@ -38,7 +38,7 @@ namespace BeeUi
 
             }
             BeeCore.Common.ReadCCD(false,G.Config.TypeCamera);
-            BeeCore.Common.matRaw = BeeCore.Common.GetImageRaw(G.Config.TypeCamera);
+            BeeCore.Common.matRaw = BeeCore.Common.GetImageRaw();
             G.Config.matSample = BeeCore.Common.matRaw.ToBitmap();
             G.EditTool.View.imgView.ImageIpl = BeeCore.Common.matRaw;
 
@@ -85,7 +85,7 @@ namespace BeeUi
         private void workerCalib_DoWork(object sender, DoWorkEventArgs e)
         {
             BeeCore.Common.ReadCCD(false, G.Config.TypeCamera);
-            Mat matRaw = BeeCore.Common.GetImageRaw(G.Config.TypeCamera);
+            Mat matRaw = BeeCore.Common.GetImageRaw();
             Mat matProcess = new Mat(matRaw.Size(), MatType.CV_8UC1);
             Mat matSample = G.Config.matSample.ToMat();
             Mat mask = new Mat(), matOr = new Mat();

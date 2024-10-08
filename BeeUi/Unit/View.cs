@@ -1241,11 +1241,11 @@ namespace BeeUi
          if(G.IsCCD)
              tmCheckCCD.Enabled = true;
             // toolEdit.MouseMove += new System.Windows.Forms.MouseEventHandler(this.tool_MouseMove);
-            BeeCore.Common.matRaw= BeeCore.Common.GetImageRaw(G.Config.TypeCamera);
+            BeeCore.Common.matRaw= BeeCore.Common.GetImageRaw();
             if (BeeCore.Common.matRaw!=null)
                 if (!BeeCore.Common.matRaw.Empty())
                     imgView.ImageIpl = BeeCore.Common.matRaw;
-            BeeCore.Common.FrameChanged += Common_FrameChanged;
+          BeeCore.Common.FrameChanged += Common_FrameChanged;
         }
 
         private void Common_FrameChanged(object sender, PropertyChangedEventArgs e)
@@ -1339,7 +1339,7 @@ namespace BeeUi
             indexImg++;
             if (indexImg >= listPath.Count()) indexImg = 0;
               BeeCore.Common.ReadCCD(G.Config.IsHist, G.Config.TypeCamera);
-            BeeCore.Common.matRaw = BeeCore.Common.GetImageRaw(G.Config.TypeCamera);
+            BeeCore.Common.matRaw = BeeCore.Common.GetImageRaw();
         }
 
         private void tmTool_Tick(object sender, EventArgs e)
@@ -1828,7 +1828,7 @@ namespace BeeUi
 
            else if (G.StatusTrig == Trig.NotTrig|| G.StatusTrig==Trig.Processing)
             {
-               Mat matCCD    = BeeCore.Common.GetImageRaw(G.Config.TypeCamera);
+               Mat matCCD    = BeeCore.Common.GetImageRaw();
 
                 Tools tool = G.listAlltool[indexToolPosition];
                   
@@ -1850,7 +1850,7 @@ namespace BeeUi
             else if (G.StatusTrig==Trig.Trigged)
             {
               
-                BeeCore.Common.matRaw = BeeCore.Common.GetImageRaw(G.Config.TypeCamera);
+                BeeCore.Common.matRaw = BeeCore.Common.GetImageRaw();
                 imgView.ImageIpl = BeeCore.Common.matRaw;
                 tmTrig.Enabled = true;
                 tmTrig.Interval = DelayTrig;
@@ -2002,10 +2002,10 @@ namespace BeeUi
 
         private void workReadCCD_DoWork(object sender, DoWorkEventArgs e)
         {
-            if (G.Config.TypeCamera == TypeCamera.USB)
+            if (G.Config.TypeCamera == TypeCamera.USB|| G.Config.TypeCamera == TypeCamera.BaslerGigE)
             {
                 BeeCore.Common.ReadCCD(G.Config.IsHist, G.Config.TypeCamera);
-                BeeCore.Common.matRaw = BeeCore.Common.GetImageRaw(G.Config.TypeCamera);
+                BeeCore.Common.matRaw = BeeCore.Common.GetImageRaw();
             }
             else
             {

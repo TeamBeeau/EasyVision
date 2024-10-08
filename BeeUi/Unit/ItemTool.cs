@@ -155,7 +155,7 @@ namespace BeeUi.Commons
             if (G.Config.matRegister != null)
             BeeCore.Common.matRaw = OpenCvSharp.Extensions.BitmapConverter.ToMat(G.Config.matRegister);
            else if(G.IsCCD)
-                BeeCore.Common.matRaw = BeeCore.Common.GetImageRaw(G.Config.TypeCamera);
+                BeeCore.Common.matRaw = BeeCore.Common.GetImageRaw();
             G.EditTool.View.imgView.ImageIpl = BeeCore.Common.matRaw;
             G.listAlltool[G.indexToolSelected].tool.LoadPara(G.PropetyTools[G.indexToolSelected].Propety) ;
             G.EditTool.View.imgView.Invalidate();

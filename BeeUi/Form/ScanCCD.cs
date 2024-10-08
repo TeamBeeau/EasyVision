@@ -25,6 +25,7 @@ namespace BeeUi
         public List<string> ScanIDCCD()
         {
             String IDCCD = G.Config.IDCamera;
+            BeeCore.Common.TypeCCD = G.Config.TypeCamera;
             String sRead = BeeCore.Common.ScanCCD();
             String[] listStringCCD = sRead.Split('\n');
             cbCCD.DataSource = listStringCCD;
@@ -52,7 +53,7 @@ namespace BeeUi
         {
             if(G.EditTool!=null)
             G.EditTool.View.tmCheckCCD.Enabled = false;
-            G.Config.TypeCamera = BeeCore.TypeCamera.USB;
+            BeeCore.Common.TypeCCD = G.Config.TypeCamera;
             if (G.Config.TypeCamera == BeeCore.TypeCamera.TinyIV)
                 BeeCore.Common.PropertyChanged -=G.EditTool.View. Common_PropertyChanged;
 
@@ -66,8 +67,9 @@ namespace BeeUi
         private void work_DoWork(object sender, DoWorkEventArgs e)
         {
 
-            if (G.Config.TypeCamera == BeeCore.TypeCamera.USB)
+            if (G.Config.TypeCamera == BeeCore.TypeCamera.USB|| G.Config.TypeCamera == BeeCore.TypeCamera.BaslerGigE)
                 BeeUi.G.IsCCD = BeeCore.Common.ConnectCCD(indexCCD, G.Config.Resolution);
+
             else if (G.Config.TypeCamera == BeeCore.TypeCamera.TinyIV)
             {
                 BeeUi.G.IsCCD = true;
@@ -121,8 +123,8 @@ namespace BeeUi
                 {
                    
                         BeeCore.Common.ReadCCD(false, G.Config.TypeCamera);
-                        BeeCore.Common.matRaw = BeeCore.Common.GetImageRaw(G.Config.TypeCamera);
-                        G.EditTool.View.imgView.ImageIpl = BeeCore.Common.matRaw;
+                        BeeCore.Common.matRaw = BeeCore.Common.GetImageRaw();
+                    G.EditTool.View.imgView.ImageIpl = BeeCore.Common.matRaw;
                    
                 }
               
@@ -166,7 +168,19 @@ namespace BeeUi
         {
             G.Config.Resolution = cbReSolution.Text.Trim();
         }
-  
-        
+
+        private void btnGigE_Click(object sender, EventArgs e)
+        {
+            BeeCore.Common.TypeCCD = BeeCore.TypeCamera.BaslerGigE;
+            G.Config.TypeCamera = BeeCore.Common.TypeCCD;
+            ScanIDCCD();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            BeeCore.Common.TypeCCD = BeeCore.TypeCamera.USB;
+            G.Config.TypeCamera = BeeCore.Common.TypeCCD;
+            ScanIDCCD();
+        }
     }
 }

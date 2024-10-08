@@ -135,9 +135,9 @@ namespace BeeUi.Common
             }
            
                 BeeCore.Common.ReadCCD(G.Config.IsHist, G.Config.TypeCamera);
-                BeeCore.Common.matRaw = BeeCore.Common.GetImageRaw(G.Config.TypeCamera);
-          
-            if(BeeCore.Common.matRaw!=null)
+                BeeCore.Common.matRaw = BeeCore.Common.GetImageRaw();
+
+            if (BeeCore.Common.matRaw!=null)
             G.EditTool.View.bmMask = new Mat(BeeCore.Common.matRaw.Rows, BeeCore.Common.matRaw.Cols, MatType.CV_8UC1);
             G.ToolSettings.Parent = G.EditTool.pEditTool;
             G.ToolSettings.Visible = true;

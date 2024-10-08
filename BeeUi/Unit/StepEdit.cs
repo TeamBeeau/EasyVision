@@ -135,7 +135,7 @@ namespace BeeUi.Common
             {
              
 
-                G.EditTool.View.imgView.ImageIpl = BeeCore.Common.GetImageRaw(G.Config.TypeCamera);
+                G.EditTool.View.imgView.ImageIpl = BeeCore.Common.GetImageRaw();
                 //G.Header.LoadProg("Program\\" + Properties.Settings.Default.programCurrent);
 
 

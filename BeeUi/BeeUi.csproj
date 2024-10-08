@@ -151,6 +151,12 @@
     <Compile Include="SettingDevice.Designer.cs">
       <DependentUpon>SettingDevice.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tool\SettingCamera.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Tool\SettingCamera.designer.cs">
+      <DependentUpon>SettingCamera.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tool\SettingStep1.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -349,6 +355,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SettingDevice.resx">
       <DependentUpon>SettingDevice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tool\SettingCamera.resx">
+      <DependentUpon>SettingCamera.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tool\SettingStep1.resx">
       <DependentUpon>SettingStep1.cs</DependentUpon>
@@ -628,6 +637,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bee.ico" />
+    <None Include="Resources\baslerGigE1.jpg" />
+    <None Include="Resources\baslerGigE.jpg" />
+    <None Include="Resources\image-ace-2-bas-gige-color.jpg" />
     <None Include="Resources\LogoAHSo1.png" />
     <None Include="Resources\LogoAHSo.png" />
     <None Include="Resources\Flip Vertical.png" />

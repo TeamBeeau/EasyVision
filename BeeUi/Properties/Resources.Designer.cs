@@ -163,6 +163,26 @@ namespace BeeUi.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap baslerGigE {
+            get {
+                object obj = ResourceManager.GetObject("baslerGigE", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap baslerGigE1 {
+            get {
+                object obj = ResourceManager.GetObject("baslerGigE1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap BeauNho {
             get {
                 object obj = ResourceManager.GetObject("BeauNho", resourceCulture);
@@ -836,6 +856,16 @@ namespace BeeUi.Properties {
         internal static System.Drawing.Bitmap Image {
             get {
                 object obj = ResourceManager.GetObject("Image", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap image_ace_2_bas_gige_color {
+            get {
+                object obj = ResourceManager.GetObject("image-ace-2-bas-gige-color", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

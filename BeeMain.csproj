@@ -117,6 +117,14 @@
       <Project>{f6e8b19f-7702-47d1-acf3-3ee535eccd1b}</Project>
       <Name>BeeDevice</Name>
     </ProjectReference>
+    <ProjectReference Include="BeeCore\BeeCore.csproj">
+      <Project>{ac6e4007-f2a0-49f3-b777-dde4c58c5adc}</Project>
+      <Name>BeeCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="BeeCV\BeeCV.vcxproj">
+      <Project>{ef3f0d87-d9d4-4971-a005-1899d08ed33c}</Project>
+      <Name>BeeCV</Name>
+    </ProjectReference>
     <ProjectReference Include="BeeUi\BeeUi.csproj">
       <Project>{1adaceb7-cb42-4600-adab-d5223651fe9a}</Project>
       <Name>BeeUi</Name>

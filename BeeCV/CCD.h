@@ -29,16 +29,18 @@ namespace CvPlus {
 	};
 	public ref class CCD
 	{
+	public: float Exporsure = 0;
+	public: 	int typeCCD = 0;
 	public: float cycle = 0;
 	public: int numERR = 0;
 	public: bool  IsErrCCD = false;
 	public:int  colCCD = 1280, rowCCD = 720; //  colCCD = 240, rowCCD = 120; //
 	public:int colCrop, rowCrop;
 	public:void  ReadCCD();
-	
-	public:void  ReadRaw(bool IsHist);
+	//public:void  ReadRaw(bool IsHist);
 	public:System::String^ ScanCCD();
-	public:bool	Connect(int indexCCD);
+	public:bool	Connect( int rowCCD, int colCCD, int index);
+	public:bool	SetPara();
 	public:void	DestroyAll();
 	public:void	ShowSetting();
 	public:void CalHist();

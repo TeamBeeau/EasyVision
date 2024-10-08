@@ -28,7 +28,9 @@ namespace BeeCore
     public enum TypeCamera
     {
         USB,
+        BaslerGigE,
         TinyIV,
+       
         None
     }
     [Serializable()]

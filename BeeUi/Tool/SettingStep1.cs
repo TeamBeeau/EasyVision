@@ -102,7 +102,7 @@ namespace BeeUi.Tool
 
         private void workRead_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            BeeCore.Common.matRaw = BeeCore.Common.GetImageRaw(G.Config.TypeCamera);
+            BeeCore.Common.matRaw = BeeCore.Common.GetImageRaw();
             G.Config.matRegister = OpenCvSharp.Extensions.BitmapConverter.ToBitmap(BeeCore.Common.matRaw);
          
             G.EditTool.View.matMaskAdd = new Mat(BeeCore.Common.matRaw.Rows, BeeCore.Common.matRaw.Cols, MatType.CV_8UC1);
@@ -131,7 +131,7 @@ namespace BeeUi.Tool
                 File.Delete("Default.config");
             Access.SaveConfig("Default.config", G.Config);
             BeeCore.Common.ReadCCD(G.Config.IsHist, G.Config.TypeCamera);
-            BeeCore.Common.matRaw=      BeeCore.Common.GetImageRaw(G.Config.TypeCamera);
+            BeeCore.Common.matRaw= BeeCore.Common.GetImageRaw();
             G.EditTool.View.imgView.ImageIpl= BeeCore.Common.matRaw;
         }
         public void PressLive()

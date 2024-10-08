@@ -1,6 +1,13 @@
 
 #include "pch.h"
+#include <pylon/PylonIncludes.h>
+#include <pylon/gige/BaslerGigEInstantCamera.h>
+typedef Pylon::CBaslerGigEInstantCamera Camera_t;
+typedef Camera_t::GrabResultPtr_t GrabResultPtr_t;
 
+using namespace GenApi;
+using namespace Basler_GigECameraParams;
+using namespace Pylon;
 #include <opencv2/opencv.hpp>
 #include <opencv2/highgui/highgui_c.h>
 #include <opencv2/imgproc/imgproc_c.h>
@@ -33,8 +40,14 @@ using namespace System;
 using namespace System::Threading;
 using namespace System::Drawing;
 using namespace System::Drawing::Imaging;
+
 namespace CvPlus {
 	
+	extern CDeviceInfo nameBasler;
+	extern Camera_t baslerGigE;
+	extern CGrabResultPtr ptrGrabResult;
+	extern CPylonImage image;/////anh output
+	extern CImageFormatConverter fc;///anh convert
 	Mat BitmapToMat(System::Drawing::Bitmap^ bitmap);
 	Bitmap^ MatToBitmap(Mat img);
 	extern cv::VideoCapture camUSB;

@@ -159,8 +159,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>C:\OpenCV4.5\opencv\build\x64\vc14\bin</OutDir>
-    <IncludePath>C:\OpenCV4.5\opencv\build\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\OpenCV4.5\opencv\build\x64\vc14\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(IncludePath)</IncludePath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_4.X|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -277,13 +277,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_WINDOWS;_DEBUG;OPENCV_4X;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>
-      </AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\OpenCV4.5\opencv\build\include;C:\Program Files\Basler\pylon 5\Development\include</AdditionalIncludeDirectories>
       <SupportJustMyCode>true</SupportJustMyCode>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalDependencies>opencv_world455d.lib</AdditionalDependencies>
+      <AdditionalDependencies>opencv_world455d.lib;GCBase_MD_VC141_v3_1_Basler_pylon_v5_1.lib;GenApi_MD_VC141_v3_1_Basler_pylon_v5_1.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\OpenCV4.5\opencv\build\x64\vc14\lib;C:\Program Files\Basler\pylon 5\Development\lib\x64</AdditionalLibraryDirectories>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>

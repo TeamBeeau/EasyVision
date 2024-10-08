@@ -367,7 +367,7 @@ namespace BeeCore
                 Mat matRS = Processing2(BeeCore.Common.matRaw.Clone());
                 G.CommonPlus.BitmapSrc(matRS.Clone().ToBitmap());
             }
-            if (BeeCore.Common.typeCamera1 == TypeCamera.TinyIV)
+            if (BeeCore.Common.TypeCCD == TypeCamera.TinyIV)
                 BeeCore.Common.SetRaw();
          
             IsOK = G.pattern.Match((int)rot._PosCenter.X, (int)rot._PosCenter.Y, (int) rot._rect.Width, (int)rot._rect.Height,rot._angle, indexTool,

@@ -63,13 +63,24 @@ namespace BeeCore
           
             return null;
         }
-        public static Mat  GetImageRaw( TypeCamera TypeCamera)
+        public static Mat  GetImageRaw()
         {
-            switch(TypeCamera)
+            int rows = 0, cols = 0, Type = 0;
+            switch (typeCCD)
             {
                 case TypeCamera.USB:
-                    int rows = 0, cols = 0, Type = 0;
+                   
                     IntPtr intPtr = GetImage(ref rows, ref cols, ref Type);
+                    unsafe
+                    {
+
+                        Mat raw = new Mat(rows, cols, Type, intPtr);
+                        return raw;
+                    }
+                    break;
+                case TypeCamera.BaslerGigE:
+                  
+                     intPtr = GetImage(ref rows, ref cols, ref Type);
                     unsafe
                     {
 
@@ -110,7 +121,7 @@ namespace BeeCore
             {
                 if (bmp != null)
                 {
-                    if (typeCamera1 == TypeCamera.TinyIV)
+                    if (TypeCCD == TypeCamera.TinyIV)
                     {
                        
                             matLive = OpenCvSharp.Extensions.BitmapConverter.ToMat(bmp).Clone();
@@ -129,7 +140,7 @@ namespace BeeCore
             }
                }
         public static float Cycle = 0;
-        public static bool ConnectCCD(int indexCCD,String Resolution)
+        public static bool ConnectCCD( int indexCCD,String Resolution)
         {
             String[] sp = Resolution.Split(' ');
             String[] sp2 = sp[0].Split('x');
@@ -137,7 +148,7 @@ namespace BeeCore
             BeeCore.G.CCD.colCCD = Convert.ToInt32(sp2[0]);
             BeeCore.G.CCD.rowCCD =Convert.ToInt32( sp2[1]); 
           
-            if (G.CCD.Connect(indexCCD))
+            if (G.CCD.Connect(Convert.ToInt32(sp2[1]), Convert.ToInt32(sp2[0]),indexCCD))
             {
                 G.CCD.ReadCCD();
                 Cycle = G.CCD.cycle;
@@ -171,7 +182,7 @@ namespace BeeCore
 
 
         }
-       public static TypeCamera typeCamera1 = TypeCamera.USB;
+        private static TypeCamera typeCCD;
 
         public static int FrameRate { get => frameRate; set
             {
@@ -183,16 +194,27 @@ namespace BeeCore
             }
         }
 
+        public static TypeCamera TypeCCD { get => typeCCD; 
+            set { typeCCD = value;
+                G.CCD.typeCCD =(int) value;
+            } }
+
         public static void ReadCCD(bool IsHist, TypeCamera typeCamera)
         {
-            typeCamera1 = typeCamera;
+            TypeCCD = typeCamera;
             switch (typeCamera)
             {
                 case TypeCamera.USB:
-            if (IsHist)
-                G.CCD.ReadRaw(true);
-            else
+            //if (IsHist)
+            //    G.CCD.ReadRaw(true);
+            //else
                 G.CCD.ReadCCD();
+                    break;
+                case TypeCamera.BaslerGigE:
+                    //if (IsHist)
+                    //    G.CCD.ReadRaw(true);
+                    //else
+                    G.CCD.ReadCCD();
                     break;
                 case TypeCamera.TinyIV:
                     
