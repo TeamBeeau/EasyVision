@@ -917,12 +917,16 @@ namespace BeeUi
 
                     return;
                 }
-               
 
 
-                    gc = e.Graphics;
-
-                var mat = new Matrix();
+          
+            gc = e.Graphics;
+            gc.SmoothingMode= SmoothingMode.AntiAlias;
+             var mat = new Matrix();
+           
+            
+            //gc.Transform = mat;
+          
                 int index = 0;
                 if (G.Config.IsShowCenter)
                 {
@@ -938,15 +942,17 @@ namespace BeeUi
                     for (int y = step; y < W; y += step)
                         e.Graphics.DrawLine(new Pen(Brushes.Gray, 1), 0, y, imgView.Width, y);
                 }
-                if (G.Config.IsShowArea)
+            
+            if (G.Config.IsShowArea)
                 {
                     int indexTool = 0;
                     foreach (Tools tool in G.listAlltool)
                     {
                         RectRotate rot = tool.tool.Propety.rotArea;
                         mat = new Matrix();
-                        mat.Translate(rot._PosCenter.X, rot._PosCenter.Y);
-                        mat.Rotate(rot._rectRotation);
+                         mat.Scale((float)(imgView.Zoom / 100.0), (float)(imgView.Zoom / 100.0));
+                       mat.Translate(rot._PosCenter.X, rot._PosCenter.Y);
+                         mat.Rotate(rot._rectRotation);
                         RectangleF _rect3 = rot._rect;
                         gc.Transform = mat;
                         gc.DrawRectangle(new Pen(Color.Blue, 1), new Rectangle((int)_rect3.X, (int)_rect3.Y, (int)_rect3.Width, (int)_rect3.Height));
@@ -956,9 +962,12 @@ namespace BeeUi
                         gc.DrawString(s, new Font("Arial", 10, FontStyle.Bold), Brushes.Black, new System.Drawing.Point((int)rot._rect.X, (int)rot._rect.Y));
                         indexTool++;
                         gc.ResetTransform();
-                    }
+                   
+                   
 
                 }
+
+            }
                 if (toolEdit != null)
                     foreach (Tools tool in G.listAlltool)
                     {
@@ -966,11 +975,14 @@ namespace BeeUi
                         {
                             RectRotate rot = tool.tool.Propety.rotArea;
                             mat = new Matrix();
-                            mat.Translate(rot._PosCenter.X, rot._PosCenter.Y);
+                        mat.Translate(-imgView.AutoScrollPosition.X, -imgView.AutoScrollPosition.Y);
+                        mat.Scale((float)(imgView.Zoom / 100.0), (float)(imgView.Zoom / 100.0));
+
+                        mat.Translate(rot._PosCenter.X, rot._PosCenter.Y);
                             mat.Rotate(rot._rectRotation);
                             RectangleF _rect3 = rot._rect;
                             gc.Transform = mat;
-                            gc.DrawRectangle(new Pen(Color.Cornsilk, 2), new Rectangle((int)_rect3.X, (int)_rect3.Y, (int)_rect3.Width, (int)_rect3.Height));
+                            gc.DrawRectangle(new Pen(Color.Cornsilk, 4), new Rectangle((int)_rect3.X, (int)_rect3.Y, (int)_rect3.Width, (int)_rect3.Height));
                             gc.ResetTransform();
                         }
                         index++;
@@ -1038,6 +1050,7 @@ namespace BeeUi
                     if (toolEdit.Propety.rotCrop != null)
                     {
                         mat = new Matrix();
+                        mat.Scale((float)(imgView.Zoom / 100.0), (float)(imgView.Zoom / 100.0));
                         mat.Translate(toolEdit.Propety.rotCrop._PosCenter.X, toolEdit.Propety.rotCrop._PosCenter.Y);
                         mat.Rotate(toolEdit.Propety.rotCrop._rectRotation);
                         RectangleF _rect2 = toolEdit.Propety.rotCrop._rect;
@@ -1049,7 +1062,9 @@ namespace BeeUi
                     if (toolEdit.Propety.rotMask != null)
                     {
                         mat = new Matrix();
-                        mat.Translate(toolEdit.Propety.rotMask._PosCenter.X, toolEdit.Propety.rotMask._PosCenter.Y);
+                    mat.Scale((float)(imgView.Zoom / 100.0), (float)(imgView.Zoom / 100.0));
+
+                    mat.Translate(toolEdit.Propety.rotMask._PosCenter.X, toolEdit.Propety.rotMask._PosCenter.Y);
                         mat.Rotate(toolEdit.Propety.rotMask._rectRotation);
                         RectangleF _rect2 = toolEdit.Propety.rotMask._rect;
                         gc.Transform = mat;
@@ -1062,7 +1077,9 @@ namespace BeeUi
                 {
                     //Area
                     mat = new Matrix();
-                    mat.Translate(toolEdit.Propety.rotArea._PosCenter.X, toolEdit.Propety.rotArea._PosCenter.Y);
+                mat.Scale((float)(imgView.Zoom / 100.0), (float)(imgView.Zoom / 100.0));
+
+                mat.Translate(toolEdit.Propety.rotArea._PosCenter.X, toolEdit.Propety.rotArea._PosCenter.Y);
                     mat.Rotate(toolEdit.Propety.rotArea._rectRotation);
                     RectangleF _rect2 = toolEdit.Propety.rotArea._rect;
                     gc.Transform = mat;
@@ -1072,7 +1089,10 @@ namespace BeeUi
                     if (toolEdit.Propety.rotMask != null)
                     {
                         mat = new Matrix();
-                        mat.Translate(toolEdit.Propety.rotMask._PosCenter.X, toolEdit.Propety.rotMask._PosCenter.Y);
+                    mat.Scale((float)(imgView.Zoom / 100.0), (float)(imgView.Zoom / 100.0));
+                    mat.Translate(toolEdit.Propety.rotCrop._PosCenter.X, toolEdit.Propety.rotCrop._PosCenter.Y);
+
+                    mat.Translate(toolEdit.Propety.rotMask._PosCenter.X, toolEdit.Propety.rotMask._PosCenter.Y);
                         mat.Rotate(toolEdit.Propety.rotMask._rectRotation);
                         _rect2 = toolEdit.Propety.rotMask._rect;
                         gc.Transform = mat;
@@ -1085,7 +1105,8 @@ namespace BeeUi
                     if (toolEdit.Propety.rotCrop != null)
                     {
                         mat = new Matrix();
-                        mat.Translate(toolEdit.Propety.rotCrop._PosCenter.X, toolEdit.Propety.rotCrop._PosCenter.Y);
+                    mat.Scale((float)(imgView.Zoom / 100.0), (float)(imgView.Zoom / 100.0));
+                    mat.Translate(toolEdit.Propety.rotCrop._PosCenter.X, toolEdit.Propety.rotCrop._PosCenter.Y);
                         mat.Rotate(toolEdit.Propety.rotCrop._rectRotation);
                         RectangleF _rect3 = toolEdit.Propety.rotCrop._rect;
                         gc.Transform = mat;
@@ -1094,7 +1115,10 @@ namespace BeeUi
                     }
                     //Area
                     mat = new Matrix();
-                    mat.Translate(toolEdit.Propety.rotArea._PosCenter.X, toolEdit.Propety.rotArea._PosCenter.Y);
+                    mat.Scale((float)(imgView.Zoom / 100.0), (float)(imgView.Zoom / 100.0));
+                    mat.Translate(toolEdit.Propety.rotCrop._PosCenter.X, toolEdit.Propety.rotCrop._PosCenter.Y);
+
+                mat.Translate(toolEdit.Propety.rotArea._PosCenter.X, toolEdit.Propety.rotArea._PosCenter.Y);
                     mat.Rotate(toolEdit.Propety.rotArea._rectRotation);
                     RectangleF _rect2 = toolEdit.Propety.rotArea._rect;
                     gc.Transform = mat;
@@ -1111,7 +1135,9 @@ namespace BeeUi
                 {
                     if (_rectRotation == float.NaN) return;
                     mat = new Matrix();
-                    mat.Translate(_rectPos.X, _rectPos.Y);
+                mat.Scale((float)(imgView.Zoom / 100.0), (float)(imgView.Zoom / 100.0));
+
+                mat.Translate(_rectPos.X, _rectPos.Y);
                     mat.Rotate(_rectRotation);
                     gc.Transform = mat;
                     var rectTopLeft = new RectangleF(_rect.Left - 5f, _rect.Top - 5f, 10f, 10f);
@@ -1244,7 +1270,7 @@ namespace BeeUi
             BeeCore.Common.matRaw= BeeCore.Common.GetImageRaw();
             if (BeeCore.Common.matRaw!=null)
                 if (!BeeCore.Common.matRaw.Empty())
-                    imgView.ImageIpl = BeeCore.Common.matRaw;
+                    imgView.Image = BeeCore.Common.matRaw.ToBitmap();
           BeeCore.Common.FrameChanged += Common_FrameChanged;
         }
 
@@ -1556,10 +1582,16 @@ namespace BeeUi
                 bmResult.Dispose();
             // BeeCore.Common.matRaw= BeeCore.Common.GetImageRaw();
             //imgView.ImageIpl = BeeCore.Common.matRaw;
-           // Cv2.ImShow("A", BeeCore.Common.matRaw);
+            // Cv2.ImShow("A", BeeCore.Common.matRaw);
+            // Set the scale.
+
+
+            //gc.Clear(Color.White);
             bmResult = new Bitmap(BeeCore.Common.matRaw.ToBitmap(),
-                                    BeeCore.Common.matRaw.Width, BeeCore.Common.matRaw.Height);
+                                 (int)(  PictureScale * BeeCore.Common.matRaw.Width), (int)(PictureScale * BeeCore.Common.matRaw.Height));
             gc = Graphics.FromImage(bmResult);
+  
+
             foreach (Tools tool in G.listAlltool)
             {
                 // G.PropetyTools[indexTool]
@@ -1653,6 +1685,7 @@ namespace BeeUi
                
                 indexTool++;
             }
+         
             switch (G.Config.ConditionOK)
             {
                 case ConditionOK.TotalOK:
@@ -1839,7 +1872,7 @@ namespace BeeUi
                 Mat matCrop = G.EditTool.View.CropRotatedRect(matCCD, new RotatedRect(new Point2f(rot._PosCenter.X + (rot._rect.Width / 2 + rot._rect.X), rot._PosCenter.Y + (rot._rect.Height / 2 + rot._rect.Y)), new Size2f(rot._rect.Width, rot._rect.Height), angle));
 
                 matCrop.CopyTo(new Mat(BeeCore.Common.matRaw, new Rect((int)rot._PosCenter.X + (int)rot._rect.X, (int)rot._PosCenter.Y + (int)rot._rect.Y, (int)rot._rect.Width, (int)rot._rect.Height)));
-                imgView.ImageIpl = BeeCore.Common.matRaw;
+                imgView.Image = BeeCore.Common.matRaw.ToBitmap();
                
             
                 DelayTrig = Para.DelayTrig;
@@ -1851,7 +1884,7 @@ namespace BeeUi
             {
               
                 BeeCore.Common.matRaw = BeeCore.Common.GetImageRaw();
-                imgView.ImageIpl = BeeCore.Common.matRaw;
+                imgView.Image = BeeCore.Common.matRaw.ToBitmap();
                 tmTrig.Enabled = true;
                 tmTrig.Interval = DelayTrig;
                 return;
@@ -1955,7 +1988,7 @@ namespace BeeUi
                 MessageBox.Show("Please stop Mode Continue");
                 return;
             }
-            if(G.Config.TypeCamera==TypeCamera.USB)
+            if(G.Config.TypeCamera==TypeCamera.USB|| G.Config.TypeCamera == TypeCamera.BaslerGigE)
             {
                 if (G.Header.SerialPort.IsOpen)
                 {
@@ -1994,7 +2027,7 @@ namespace BeeUi
         public void Common_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             
-            imgView.ImageIpl = BeeCore.Common.matLive;
+            imgView.Image = BeeCore.Common.matLive.ToBitmap();
             GC.Collect();
             GC.WaitForPendingFinalizers();
 
@@ -2025,9 +2058,9 @@ namespace BeeUi
             // imgView.Invalidate();
             if (btnLive.IsCLick)
             {
-                if (imgView.ImageIpl!=null)
-                imgView.ImageIpl.Dispose();
-                imgView.ImageIpl = BeeCore.Common.matRaw.Clone();
+                //if (imgView.Image!=null)
+                //imgView.Image.Dispose();
+                imgView.Image = BeeCore.Common.matRaw.Clone().ToBitmap();
                 workReadCCD.RunWorkerAsync();
             } 
             else if (G.IsCap)
@@ -2303,9 +2336,44 @@ namespace BeeUi
             if(openFile.ShowDialog()==DialogResult.OK)
             {
                 BeeCore.Common.matRaw = Cv2.ImRead(openFile.FileName);
-                imgView.ImageIpl = BeeCore.Common.matRaw;
+                imgView.Image= BeeCore.Common.matRaw.ToBitmap();
             }    
           
+        }
+        // The Bitmap we display.
+        private Bitmap Bm = null;
+
+        // The dimensions of the drawing area in world coordinates.
+       
+
+        // The scale.
+        public float PictureScale = 1.0f;
+       
+        private void DrawImage(Graphics gr)
+        {
+            gr.DrawImage(BeeCore.Common.matRaw.ToBitmap(),new PointF(0,0));
+           
+        }
+        private void btnZoomIn_Click(object sender, EventArgs e)
+        {
+           // PictureScale += 0.1f;
+           // imgView.Invalidate();
+            imgView.Zoom += 5;
+          //  imgView2.Invalidate();
+        }
+
+        private void btnZoomOut_Click(object sender, EventArgs e)
+        {
+            imgView.Zoom -= 5;
+          //  imgView2.Invalidate();
+            //PictureScale -= 0.1f;
+            //if (PictureScale == 0) PictureScale = 0.1f;
+            //imgView.Invalidate();
+        }
+
+        private void btnFull_Click(object sender, EventArgs e)
+        {
+            imgView.Zoom = 100;
         }
 
         private void tmClear_Tick(object sender, EventArgs e)

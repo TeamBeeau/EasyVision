@@ -248,7 +248,7 @@ System::String^ CCD::ScanCCD()
 	}
 	return nameCCD;
 }
-bool ConnectBasler(int rowCCD, int colCCD, int index)
+ static bool ConnectBasler(int rowCCD, int colCCD, int index)
 {
 	if (index == -1)return false;
 	try
@@ -274,7 +274,8 @@ bool ConnectBasler(int rowCCD, int colCCD, int index)
 				int height = (int)baslerGigE.Height.GetMax();
 				baslerGigE.CenterX =true;
 				baslerGigE.CenterX =true;
-				baslerGigE.ExposureTimeAbs.SetValue(10);
+				
+				//baslerGigE.ExposureTimeAbs.SetValue(10000);
 				//_minOffsetX = (int)camera.OffsetX.GetMin();
 				//baslerGigE.OffsetX.SetValue(_xCenter);
 				//baslerGigE.OffsetY.SetValue(_yCenter);
@@ -303,7 +304,7 @@ bool ConnectBasler(int rowCCD, int colCCD, int index)
 				
 				//_minOffsetY = (int)camera.OffsetY.GetMin();
 				//_maxOffsetY = (int)camera.OffsetY.GetMax();
-				//_maxWidth = (int)camera.Width.GetMax();
+				//_maxWidth = (int)baslerGigE.Width.GetMax();
 				//_minWidth = (int)camera.Width.GetMin();
 
 				//_maxHeight = (int)camera.Height.GetMax();
@@ -357,6 +358,14 @@ bool ConnectBasler(int rowCCD, int colCCD, int index)
 }
 bool	CCD::SetPara()
 {
+	switch (typeCCD)
+	{
+	case 0:break;
+	case 1:
+		baslerGigE.ExposureTimeRaw.SetValue(Exposure);
+		break;
+}
+	
 	return false;
 }
 bool ConnectUsb(int rowCCD, int colCCD, int index)
@@ -385,14 +394,29 @@ bool CCD::Connect( int rowCCD, int colCCD, int index)
 {
 	numERR = 0;
 	IsErrCCD = false;
+	bool IsConnect = false;
 	switch (typeCCD)
 	{
-	case 1:return ConnectBasler(rowCCD, colCCD, index);
+	case 1:
+		IsConnect =ConnectBasler(rowCCD, colCCD, index);
+		try
+		{
+		
+			StepExposure = (int)baslerGigE.ExposureTimeRaw.GetInc();
+			MinExposure = (int)baslerGigE.ExposureTimeRaw.GetMin();
+			MaxExposure = (int)baslerGigE.ExposureTimeRaw.GetMax();
+			Exposure = (int)baslerGigE.ExposureTimeRaw.GetValue();
+		}
+		catch (exception ex)
+		{
+
+		}
 		break;
-	default:return ConnectUsb(rowCCD, colCCD, index);
+	default:IsConnect = ConnectUsb(rowCCD, colCCD, index);
 		break;
 	}
 	
+	return IsConnect;
 }
 void CCD::ReadCCD()
 {

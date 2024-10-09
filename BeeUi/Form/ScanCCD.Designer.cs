@@ -130,7 +130,8 @@ namespace BeeUi
             "1600x1200 (1.9 MP)",
             "1920x1080 (2.1 MP)",
             "2048x1536 (3.1 MP)",
-            "2592x1944 (5 MP)"});
+            "2592x1944 (5 MP)",
+            "3840x2748 (10MP)"});
             this.cbReSolution.Location = new System.Drawing.Point(152, 211);
             this.cbReSolution.Name = "cbReSolution";
             this.cbReSolution.Size = new System.Drawing.Size(193, 32);
@@ -188,7 +189,7 @@ namespace BeeUi
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.Color.Black;
-            this.button3.Image = global::BeeUi.Properties.Resources.Camera;
+            this.button3.Image = global::BeeUi.Properties.Resources.baslerGigE;
             this.button3.Location = new System.Drawing.Point(268, 55);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(109, 89);

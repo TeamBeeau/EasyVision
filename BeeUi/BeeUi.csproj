@@ -63,6 +63,9 @@
     <ApplicationIcon>bee.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Cyotek.Windows.Forms.ImageBox, Version=1.2.0.0, Culture=neutral, PublicKeyToken=58daa28b0b2de221, processorArchitecture=MSIL">
+      <HintPath>..\packages\CyotekImageBox.2.0.0-beta.2\lib\net472\Cyotek.Windows.Forms.ImageBox.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -637,6 +640,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bee.ico" />
+    <None Include="Resources\Full Screen.png" />
+    <None Include="Resources\Zoom Out.png" />
+    <None Include="Resources\Zoom In.png" />
     <None Include="Resources\baslerGigE1.jpg" />
     <None Include="Resources\baslerGigE.jpg" />
     <None Include="Resources\image-ace-2-bas-gige-color.jpg" />

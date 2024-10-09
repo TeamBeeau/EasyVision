@@ -1,5 +1,6 @@
 ﻿using BeeCore;
 using BeeUi.Tool;
+using OpenCvSharp.Extensions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -156,7 +157,7 @@ namespace BeeUi.Commons
             BeeCore.Common.matRaw = OpenCvSharp.Extensions.BitmapConverter.ToMat(G.Config.matRegister);
            else if(G.IsCCD)
                 BeeCore.Common.matRaw = BeeCore.Common.GetImageRaw();
-            G.EditTool.View.imgView.ImageIpl = BeeCore.Common.matRaw;
+            G.EditTool.View.imgView.Image = BeeCore.Common.matRaw.ToBitmap();
             G.listAlltool[G.indexToolSelected].tool.LoadPara(G.PropetyTools[G.indexToolSelected].Propety) ;
             G.EditTool.View.imgView.Invalidate();
             G.EditTool.View.imgView.Update();

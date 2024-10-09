@@ -40,10 +40,10 @@ namespace BeeUi.Commons
             this.txt.BackColor = System.Drawing.Color.White;
             this.txt.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txt.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt.Location = new System.Drawing.Point(55, 0);
+            this.txt.Location = new System.Drawing.Point(60, 0);
             this.txt.Multiline = true;
             this.txt.Name = "txt";
-            this.txt.Size = new System.Drawing.Size(78, 39);
+            this.txt.Size = new System.Drawing.Size(68, 39);
             this.txt.TabIndex = 13;
             this.txt.Text = "0";
             this.txt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -52,7 +52,7 @@ namespace BeeUi.Commons
             // 
             this.btnSub.BackColor = System.Drawing.Color.Gray;
             this.btnSub.BackgroundColor = System.Drawing.Color.Gray;
-            this.btnSub.BackgroundImage = global::BeeUi.Properties.Resources.btnSelect;
+            this.btnSub.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSub.BackgroundImage")));
             this.btnSub.BorderColor = System.Drawing.Color.Transparent;
             this.btnSub.BorderRadius = 1;
             this.btnSub.BorderSize = 0;
@@ -65,7 +65,7 @@ namespace BeeUi.Commons
             this.btnSub.IsNotChange = false;
             this.btnSub.IsRect = false;
             this.btnSub.IsUnGroup = false;
-            this.btnSub.Location = new System.Drawing.Point(0, 0);
+            this.btnSub.Location = new System.Drawing.Point(5, 0);
             this.btnSub.Name = "btnSub";
             this.btnSub.Size = new System.Drawing.Size(55, 39);
             this.btnSub.TabIndex = 11;
@@ -78,7 +78,7 @@ namespace BeeUi.Commons
             // 
             this.btnPlus.BackColor = System.Drawing.Color.Transparent;
             this.btnPlus.BackgroundColor = System.Drawing.Color.Transparent;
-            this.btnPlus.BackgroundImage = global::BeeUi.Properties.Resources.btnChoose;
+            this.btnPlus.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPlus.BackgroundImage")));
             this.btnPlus.BorderColor = System.Drawing.Color.Transparent;
             this.btnPlus.BorderRadius = 1;
             this.btnPlus.BorderSize = 0;
@@ -91,8 +91,9 @@ namespace BeeUi.Commons
             this.btnPlus.IsNotChange = false;
             this.btnPlus.IsRect = false;
             this.btnPlus.IsUnGroup = false;
-            this.btnPlus.Location = new System.Drawing.Point(133, 0);
+            this.btnPlus.Location = new System.Drawing.Point(128, 0);
             this.btnPlus.Name = "btnPlus";
+            this.btnPlus.Padding = new System.Windows.Forms.Padding(10);
             this.btnPlus.Size = new System.Drawing.Size(63, 39);
             this.btnPlus.TabIndex = 12;
             this.btnPlus.TextColor = System.Drawing.Color.Black;
@@ -108,6 +109,7 @@ namespace BeeUi.Commons
             this.Controls.Add(this.btnSub);
             this.Controls.Add(this.btnPlus);
             this.Name = "Numeric2";
+            this.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.Size = new System.Drawing.Size(196, 39);
             this.ResumeLayout(false);
             this.PerformLayout();

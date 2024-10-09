@@ -843,6 +843,16 @@ namespace BeeUi.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Full_Screen {
+            get {
+                object obj = ResourceManager.GetObject("Full_Screen", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap HD_1080p {
             get {
                 object obj = ResourceManager.GetObject("HD_1080p", resourceCulture);
@@ -1263,9 +1273,29 @@ namespace BeeUi.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Zoom_In {
+            get {
+                object obj = ResourceManager.GetObject("Zoom_In", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Zoom_In_2 {
             get {
                 object obj = ResourceManager.GetObject("Zoom_In_2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Zoom_Out {
+            get {
+                object obj = ResourceManager.GetObject("Zoom_Out", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

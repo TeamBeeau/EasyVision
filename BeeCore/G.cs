@@ -55,6 +55,7 @@ namespace BeeCore
     public struct G
     {
         public static Common Common = new Common();
+        public static ParaCam ParaCam = new ParaCam();
         public static CvPlus.ColorArea colorArea = new CvPlus.ColorArea();
         public static CvPlus.CCD CCD = new CvPlus.CCD();
         public static CvPlus.Pattern pattern = new CvPlus.Pattern();

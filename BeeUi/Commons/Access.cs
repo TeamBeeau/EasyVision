@@ -76,6 +76,34 @@ namespace BeeUi
             }
             return Config;
         }
+        public static void SaveParaCam(String path, ParaCam ParaCam)
+        {
+
+            using (MemoryStream ms = new MemoryStream())
+            {
+
+                BinaryFormatter bf = new BinaryFormatter();
+                bf.Serialize(ms, ParaCam);
+                ms.Position = 0;
+                byte[] buffer = new byte[(int)ms.Length];
+                ms.Read(buffer, 0, buffer.Length);
+                File.WriteAllText(path, Convert.ToBase64String(buffer));
+                File.Exists(path);
+
+
+            }
+        }
+        public static ParaCam LoadParaCam(string Path)
+        {
+            ParaCam Config;
+
+            using (MemoryStream ms = new MemoryStream(Convert.FromBase64String(File.ReadAllText(Path))))
+            {
+                BinaryFormatter bf = new BinaryFormatter();
+                Config = (ParaCam)bf.Deserialize(ms);
+            }
+            return Config;
+        }
         public void SaveKeys(String Keys, String path)
         {
 

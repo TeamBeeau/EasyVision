@@ -820,7 +820,7 @@ bool Pattern::Match(
 
 	Mat matDraw = Mat();
 	 matCrop  =  RotateMat(matCanny, RotatedRect(cv::Point2f(x, y), cv::Size2f(w, h), angle));
-	 matCrop= Process(matCrop);
+	// matCrop= Process(matCrop);
 	if (matCrop.type() == CV_8UC3)
 	{
 		cvtColor(matCrop, matCrop, COLOR_BGR2GRAY);

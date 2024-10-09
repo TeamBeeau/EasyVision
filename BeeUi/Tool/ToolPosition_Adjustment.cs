@@ -247,9 +247,8 @@ namespace BeeUi.Tool
                     gc.ResetTransform();
                 }
             }
-          
 
-
+           
             return gc;
         }
         public TypeTool TypeTool = TypeTool.Position_Adjustment;
@@ -283,8 +282,21 @@ namespace BeeUi.Tool
                 catch (Exception ex) { }
             return gc;
         }
+
       
-   
+        public void GetTemp(RectRotate rotateRect, Mat matRegister)
+        {
+
+            float angle = rotateRect._rectRotation;
+            if (rotateRect._rectRotation < 0) angle = 360 + rotateRect._rectRotation;
+            Mat matCrop = G.EditTool.View.CropRotatedRect(matRegister, new RotatedRect(new Point2f(rotateRect._PosCenter.X + (rotateRect._rect.Width / 2 + rotateRect._rect.X), rotateRect._PosCenter.Y + (rotateRect._rect.Height / 2 + rotateRect._rect.Y)), new Size2f(rotateRect._rect.Width, rotateRect._rect.Height), angle));
+            if (matCrop.Type() == MatType.CV_8UC3)
+                Cv2.CvtColor(matCrop, matTemp, ColorConversionCodes.BGR2GRAY);
+            if (Propety.IsAreaWhite)
+                Cv2.BitwiseNot(matTemp, matTemp);
+
+        }
+
         private void threadProcess_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             G.IsCheck = true;

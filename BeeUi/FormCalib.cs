@@ -40,7 +40,7 @@ namespace BeeUi
             BeeCore.Common.ReadCCD(false,G.Config.TypeCamera);
             BeeCore.Common.matRaw = BeeCore.Common.GetImageRaw();
             G.Config.matSample = BeeCore.Common.matRaw.ToBitmap();
-            G.EditTool.View.imgView.ImageIpl = BeeCore.Common.matRaw;
+            G.EditTool.View.imgView.Image = BeeCore.Common.matRaw.ToBitmap();
 
         }
 
@@ -65,7 +65,7 @@ namespace BeeUi
             }    
                 
 
-             G.EditTool.View.imgView.ImageIpl = matRS;
+             G.EditTool.View.imgView.Image = matRS.ToBitmap();
             if (btnCheck.IsCLick)
                 workerCalib.RunWorkerAsync();
         }
@@ -170,8 +170,8 @@ namespace BeeUi
         {if (btnLive.IsCLick) btnLive.PerformClick();
             if (btnCheck.IsCLick) btnCheck.PerformClick();
             G.EditTool.View.btnCalib.IsCLick = false;
-            if(G.StepEdit.SettingStep1!=null)
-            G.StepEdit.SettingStep1.btnCalib.IsCLick = false;
+            //if(G.StepEdit.SettingStep1!=null)
+            //G.StepEdit.SettingStep1.btnCalib.IsCLick = false;
 
         }
         bool IsHistOld = false;

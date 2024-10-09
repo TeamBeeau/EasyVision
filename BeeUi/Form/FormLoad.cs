@@ -172,10 +172,20 @@ namespace BeeUi
         ScanCCD ScanCCD = new ScanCCD();
         private void TmLoad_Tick(object sender, EventArgs e)
         {
+            G.Project =Properties.Settings.Default.programCurrent.Replace(".prog", "");
             if (File.Exists("Default.config"))
                 G.Config = Access.LoadConfig("Default.config");
             else
                 G.Config = new Config();
+            try
+            {
+                if (File.Exists("Program\\" + G.Project + ".para"))
+                    BeeCore.G.ParaCam = Access.LoadParaCam("Program\\" + G.Project + ".para");
+            }
+            catch (Exception ex)
+            {
+
+            }
             tmLoad.Enabled = false;
             listCCD = ScanCCD.ScanIDCCD();
             wLoad.RunWorkerAsync();

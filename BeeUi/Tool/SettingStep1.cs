@@ -23,6 +23,9 @@ namespace BeeUi.Tool
         public SettingStep1()
         {
             InitializeComponent();
+            p.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, p.Width, p.Height, 5, 5));
+            p2.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, p2.Width, p2.Height, 5, 5));
+
             btnNextStep.Enabled = false;
         }
 
@@ -31,6 +34,10 @@ namespace BeeUi.Tool
             if (File.Exists("Default.config"))
                 File.Delete("Default.config");
             Access.SaveConfig("Default.config", G.Config);
+
+            if (File.Exists("Program\\" + G.Project+".para"))
+                File.Delete("Program\\" + G.Project + ".para");
+            Access.SaveParaCam("Program\\" + G.Project + ".para", BeeCore.G.ParaCam);
             btnNextStep.Enabled = false;
             this.Parent.Controls.Remove(this);
             if (btnLive.IsCLick)
@@ -38,10 +45,23 @@ namespace BeeUi.Tool
             G.StepEdit.btnStep2.PerformClick();
 
         }
-
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn
+       (
+           int nLeftRect,     // x-coordinate of upper-left corner
+           int nTopRect,      // y-coordinate of upper-left corner
+           int nRightRect,    // x-coordinate of lower-right corner
+           int nBottomRect,   // y-coordinate of lower-right corner
+           int nWidthEllipse, // height of ellipse
+           int nHeightEllipse // width of ellipse
+       );
         private void SettingStep2_Load(object sender, EventArgs e)
         {
-            
+            trackExposure.Min = (int)BeeCore.Common.MinExposure;
+           //trackExposure.Max = (int)BeeCore.Common.MaxExposure;
+            trackExposure.Step= (int)BeeCore.Common.StepExposure;
+            trackExposure.Value = BeeCore.G.ParaCam.Exposure;
+
             if (G.EditTool.View == null)
             {
                 G.EditTool.View = new View();
@@ -55,7 +75,7 @@ namespace BeeUi.Tool
             btnShowCenter.IsCLick = G.Config.IsShowCenter;
             btnShowArea.IsCLick = G.Config.IsShowArea;
           
-            btnEqubtnalize.IsCLick = G.Config.IsHist ;
+            //btnEqubtnalize.IsCLick = G.Config.IsHist ;
         }
        
         private void btnLoadImge_Click(object sender, EventArgs e)
@@ -72,7 +92,7 @@ namespace BeeUi.Tool
                 G.EditTool.View.bmMask = new Mat(BeeCore.Common.matRaw.Rows, BeeCore.Common.matRaw.Cols, MatType.CV_8UC1);
                 G.EditTool.View.matMaskAdd = new Mat(BeeCore.Common.matRaw.Rows, BeeCore.Common.matRaw.Cols, MatType.CV_8UC1);
 
-                G.EditTool.View.imgView.ImageIpl = BeeCore.Common.matRaw;
+                G.EditTool.View.imgView.Image = BeeCore.Common.matRaw.ToBitmap();
 
                 G.EditTool.View.imgView.Invalidate();
                 btnNextStep.Enabled = true;
@@ -111,7 +131,7 @@ namespace BeeUi.Tool
             G.EditTool.View.matMaskAdd = new Mat(BeeCore.Common.matRaw.Rows, BeeCore.Common.matRaw.Cols, MatType.CV_8UC1);
             G.EditTool.View.matResgiter = BeeCore.Common.matRaw.Clone();
             btnNextStep.Enabled = true;
-            G.EditTool.View.imgView.ImageIpl = BeeCore.Common.matRaw;
+            G.EditTool.View.imgView.Image = BeeCore.Common.matRaw.ToBitmap();
             btnNextStep.BackgroundImage = Properties.Resources.btnChoose;
 
         }
@@ -125,18 +145,18 @@ namespace BeeUi.Tool
 
         private void btnEqualize_Click(object sender, EventArgs e)
         {
-            G.Config.IsHist  = btnEqubtnalize.IsCLick;
+            //G.Config.IsHist  = btnEqubtnalize.IsCLick;
 
-            if (File.Exists("Default.config"))
-                File.Delete("Default.config");
-            Access.SaveConfig("Default.config", G.Config);
-            BeeCore.Common.ReadCCD(G.Config.IsHist, G.Config.TypeCamera);
-            BeeCore.Common.matRaw= BeeCore.Common.GetImageRaw();
-            G.EditTool.View.imgView.ImageIpl= BeeCore.Common.matRaw;
+            //if (File.Exists("Default.config"))
+            //    File.Delete("Default.config");
+            //Access.SaveConfig("Default.config", G.Config);
+            //BeeCore.Common.ReadCCD(G.Config.IsHist, G.Config.TypeCamera);
+            //BeeCore.Common.matRaw= BeeCore.Common.GetImageRaw();
+            //G.EditTool.View.imgView.ImageIpl= BeeCore.Common.matRaw;
         }
         public void PressLive()
         {
-            if (btnCalib.IsCLick) btnCalib.PerformClick();
+          //  if (btnCalib.IsCLick) btnCalib.PerformClick();
             G.EditTool.View.btnLive.Enabled = true;
 
             G.EditTool.View.btnLive.PerformClick();
@@ -200,19 +220,30 @@ namespace BeeUi.Tool
         FormCalib formCalib;
         private void btnCalib_Click(object sender, EventArgs e)
         {
-            if(btnCalib.IsCLick)
-            {
-                if (formCalib != null)
-                    formCalib.Close();
+            //if(btnCalib.IsCLick)
+            //{
+            //    if (formCalib != null)
+            //        formCalib.Close();
 
-                formCalib = new FormCalib();
-                formCalib.Show();
-            }    
-            else
-            {
-                if(formCalib!=null)
-                formCalib.Close();
-            }    
+            //    formCalib = new FormCalib();
+            //    formCalib.Show();
+            //}    
+            //else
+            //{
+            //    if(formCalib!=null)
+            //    formCalib.Close();
+            //}    
+        }
+
+        private void trackExposure_ValueChanged(int obj)
+        {
+            trackExposure.Value= trackExposure.Value - (trackExposure.Value % trackExposure.Step);
+            BeeCore.G.ParaCam.Exposure = trackExposure.Value;
+        }
+
+        private void trackExposure_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

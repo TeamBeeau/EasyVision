@@ -29,7 +29,8 @@ namespace CvPlus {
 	};
 	public ref class CCD
 	{
-	public: float Exporsure = 0;
+	public: float Exposure = 0;
+	public: double StepExposure = 0,MinExposure=1,MaxExposure=1000;
 	public: 	int typeCCD = 0;
 	public: float cycle = 0;
 	public: int numERR = 0;

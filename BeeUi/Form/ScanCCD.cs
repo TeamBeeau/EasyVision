@@ -1,4 +1,5 @@
 ﻿using BeeUi.Commons;
+using OpenCvSharp.Extensions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -58,7 +59,7 @@ namespace BeeUi
                 BeeCore.Common.PropertyChanged -=G.EditTool.View. Common_PropertyChanged;
 
             btnConnect.Enabled = false;
-            
+           
             ConnectCCD();
 
 
@@ -86,6 +87,8 @@ namespace BeeUi
             btnConnect.Enabled = true;
             if (BeeUi.G.IsCCD)
             {
+                  
+
                 G.Config.IDCamera = cbCCD.Text.Trim();
                 if (G.Main == null)
                 {
@@ -124,14 +127,14 @@ namespace BeeUi
                    
                         BeeCore.Common.ReadCCD(false, G.Config.TypeCamera);
                         BeeCore.Common.matRaw = BeeCore.Common.GetImageRaw();
-                    G.EditTool.View.imgView.ImageIpl = BeeCore.Common.matRaw;
+                    G.EditTool.View.imgView.Image = BeeCore.Common.matRaw.ToBitmap();
                    
                 }
               
                 if (File.Exists("Default.config"))
                     File.Delete("Default.config");
                 Access.SaveConfig("Default.config", G.Config);
-                this.Hide();
+                    this.Hide();
                 // 
 
             }

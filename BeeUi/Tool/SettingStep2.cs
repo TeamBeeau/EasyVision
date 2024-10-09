@@ -1,5 +1,6 @@
 ﻿using BeeCore;
 using OpenCvSharp;
+using OpenCvSharp.Extensions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -58,7 +59,7 @@ namespace BeeUi.Tool
                 G.EditTool.View.matMaskAdd = new Mat(BeeCore.Common.matRaw.Rows, BeeCore.Common.matRaw.Cols, MatType.CV_8UC1);
                 G.EditTool.View.matResgiter = BeeCore.Common.matRaw.Clone();
                 btnNextStep.Enabled = true;
-                G.EditTool.View.imgView.ImageIpl = BeeCore.Common.matRaw;
+                G.EditTool.View.imgView.Image = BeeCore.Common.matRaw.ToBitmap();
                 btnNextStep.BackgroundImage = Properties.Resources.btnChoose;
                
             
@@ -94,7 +95,7 @@ namespace BeeUi.Tool
             G.EditTool.View.matMaskAdd = new Mat(BeeCore.Common.matRaw.Rows, BeeCore.Common.matRaw.Cols, MatType.CV_8UC1);
             G.EditTool.View.matResgiter = BeeCore.Common.matRaw.Clone();
             btnNextStep.Enabled = true;
-            G.EditTool.View.imgView.ImageIpl = BeeCore.Common.matRaw;
+            G.EditTool.View.imgView.Image = BeeCore.Common.matRaw.ToBitmap();
             btnNextStep.BackgroundImage = Properties.Resources.btnChoose;
 
         }

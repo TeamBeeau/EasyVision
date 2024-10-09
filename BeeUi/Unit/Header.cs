@@ -160,7 +160,7 @@ namespace BeeUi.Common
                 G.PropetyTools = Access.LoadProg(PathProg);
             else
                 G.PropetyTools = new List<PropetyTool>();
-        
+      
             G.ToolSettings.pAllTool.Controls.Clear();
             G.ToolSettings.Y = 10; G.ToolSettings.X = 5;
             foreach (PropetyTool propety in G.PropetyTools)
@@ -375,8 +375,8 @@ namespace BeeUi.Common
 
         private void cbProgram_SelectedIndexChanged(object sender, EventArgs e)
         {
-          
-            if(!IsLoad)
+            G.Project = cbProgram.Text.Trim().Replace(".prog", "");
+            if (!IsLoad)
             {
                 IsLoad = true;
                 cbProgram.SelectedIndex = cbProgram.FindStringExact(Properties.Settings.Default.programCurrent);
@@ -393,7 +393,7 @@ namespace BeeUi.Common
                 this.LoadProg("Program\\"+cbProgram.Text.Trim());
                 Properties.Settings.Default.programCurrent = cbProgram.Text.Trim();
                 Properties.Settings.Default.Save();
-
+              
             }
         }
         bool IsSaveAs = false;

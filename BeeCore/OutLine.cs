@@ -311,9 +311,11 @@ namespace BeeCore
                 Mat matCrop = Common.CropRotatedRect(matRaw, new RotatedRect(new Point2f(rotateRect._PosCenter.X + (rotateRect._rect.Width / 2 + rotateRect._rect.X), rotateRect._PosCenter.Y + (rotateRect._rect.Height / 2 + rotateRect._rect.Y)), new Size2f(rotateRect._rect.Width, rotateRect._rect.Height), angle));
                 if (matCrop.Type() == MatType.CV_8UC3)
                     Cv2.CvtColor(matCrop, matTemp, ColorConversionCodes.BGR2GRAY);
+                else
+                    matTemp = matCrop.Clone();
                 if (IsAreaWhite)
                     Cv2.BitwiseNot(matTemp, matTemp);
-                matTemp = Processing(matTemp);
+               // matTemp = Processing(matTemp);
             }
             else
             {
@@ -364,8 +366,8 @@ namespace BeeCore
 
             if (!IsRun)
             {
-                Mat matRS = Processing2(BeeCore.Common.matRaw.Clone());
-                G.CommonPlus.BitmapSrc(matRS.Clone().ToBitmap());
+               // Mat matRS = Processing2(BeeCore.Common.matRaw.Clone());
+                G.CommonPlus.BitmapSrc(BeeCore.Common.matRaw.Clone().ToBitmap());
             }
             if (BeeCore.Common.TypeCCD == TypeCamera.TinyIV)
                 BeeCore.Common.SetRaw();

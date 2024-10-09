@@ -113,6 +113,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="BeeCV\BeeCV.vcxproj">
+      <Project>{ef3f0d87-d9d4-4971-a005-1899d08ed33c}</Project>
+      <Name>BeeCV</Name>
+    </ProjectReference>
     <ProjectReference Include="BeeUi\BeeUi.csproj">
       <Project>{1adaceb7-cb42-4600-adab-d5223651fe9a}</Project>
       <Name>BeeUi</Name>

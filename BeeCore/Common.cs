@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using OpenCvSharp.Extensions;
 using System.ComponentModel;
 
+
 namespace BeeCore
 {
   public   class Common
@@ -140,6 +141,8 @@ namespace BeeCore
             }
                }
         public static float Cycle = 0;
+       
+        public static double StepExposure=1,MinExposure=1,MaxExposure=100;
         public static bool ConnectCCD( int indexCCD,String Resolution)
         {
             String[] sp = Resolution.Split(' ');
@@ -151,7 +154,13 @@ namespace BeeCore
             if (G.CCD.Connect(Convert.ToInt32(sp2[1]), Convert.ToInt32(sp2[0]),indexCCD))
             {
                 G.CCD.ReadCCD();
+                StepExposure = G.CCD.StepExposure;
+                MinExposure = G.CCD.MinExposure;
+                MaxExposure=G.CCD.MaxExposure;
+                if(G.ParaCam.exposure != 0)
+             G.CCD.Exposure =  G.ParaCam.exposure;
                 Cycle = G.CCD.cycle;
+                G.CCD.SetPara();
                 ///G.CommonPlus.GetImageRaw();
                 return true;
             }
@@ -199,6 +208,7 @@ namespace BeeCore
                 G.CCD.typeCCD =(int) value;
             } }
 
+       
         public static void ReadCCD(bool IsHist, TypeCamera typeCamera)
         {
             TypeCCD = typeCamera;

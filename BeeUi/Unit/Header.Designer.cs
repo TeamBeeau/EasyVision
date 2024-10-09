@@ -37,9 +37,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnMode = new System.Windows.Forms.Button();
             this.pProgram = new System.Windows.Forms.Panel();
-            this.SerialPort = new System.IO.Ports.SerialPort(this.components);
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.workLoadProgram = new System.ComponentModel.BackgroundWorker();
             this.btnAdd = new BeeUi.Common.RJButton();
             this.btnUser = new BeeUi.Common.RJButton();
             this.btnReport = new BeeUi.Common.RJButton();
@@ -47,6 +44,9 @@
             this.btnDelect = new BeeUi.Common.RJButton();
             this.btnSaveAs = new BeeUi.Common.RJButton();
             this.btnIO = new BeeUi.Common.RJButton();
+            this.SerialPort = new System.IO.Ports.SerialPort(this.components);
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.workLoadProgram = new System.ComponentModel.BackgroundWorker();
             this.pProgram.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -126,19 +126,6 @@
             this.pProgram.Size = new System.Drawing.Size(814, 65);
             this.pProgram.TabIndex = 23;
             this.pProgram.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
-            // 
-            // SerialPort
-            // 
-            this.SerialPort.BaudRate = 115200;
-            this.SerialPort.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.SerialPort_DataReceived);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(104, 41);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 22;
-            this.textBox1.Visible = false;
             // 
             // btnAdd
             // 
@@ -333,6 +320,19 @@
             this.btnIO.UseVisualStyleBackColor = false;
             this.btnIO.Click += new System.EventHandler(this.btnIO_Click);
             // 
+            // SerialPort
+            // 
+            this.SerialPort.BaudRate = 115200;
+            this.SerialPort.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.SerialPort_DataReceived);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(104, 41);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 22;
+            this.textBox1.Visible = false;
+            // 
             // Header
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -354,7 +354,6 @@
 
         #endregion
         private System.ComponentModel.BackgroundWorker workConnect;
-        private System.Windows.Forms.ComboBox cbProgram;
         private RJButton btnDelect;
         private RJButton btnAdd;
         private RJButton btnSaveAs;
@@ -370,5 +369,6 @@
         public RJButton btnSave;
         public RJButton btnUser;
         private System.ComponentModel.BackgroundWorker workLoadProgram;
+        public System.Windows.Forms.ComboBox cbProgram;
     }
 }

@@ -94,6 +94,7 @@
     <Compile Include="Class1.cs" />
     <Compile Include="ColorArea.cs" />
     <Compile Include="Common.cs" />
+    <Compile Include="ParaCam.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="dataMat.cs" />
     <Compile Include="G.cs" />

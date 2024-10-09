@@ -2,6 +2,7 @@
 using BeeUi.Commons;
 using BeeUi.Tool;
 using OpenCvSharp;
+using OpenCvSharp.Extensions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -135,7 +136,7 @@ namespace BeeUi.Common
             {
              
 
-                G.EditTool.View.imgView.ImageIpl = BeeCore.Common.GetImageRaw();
+                G.EditTool.View.imgView.Image = BeeCore.Common.GetImageRaw().ToBitmap();
                 //G.Header.LoadProg("Program\\" + Properties.Settings.Default.programCurrent);
 
 
